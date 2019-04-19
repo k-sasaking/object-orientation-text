@@ -8,7 +8,8 @@
 ### オブジェクト指向が苦手になりやすい理由
 
 
-1. 専門用語が多すぎる！！(クラス、インスタンス、コンストラクタ、継承、ポリモーフィズム、抽象クラス、インターフェース....)
+1. 専門用語が多すぎる！！
+(クラス、インスタンス、コンストラクタ、継承、ポリモーフィズム、抽象クラス、インターフェース....)
 
 1. 一般的なカリキュラム上、Javaの基礎を学んだ後に学ぶので、そもそも考え方や頭の使い方が一気に変わるから...。
 
@@ -31,26 +32,26 @@
 
 ## オブジェクト指向を体験してみよう！
 
-オブジェクトのスタートラインは"モノ"を概念的に捉える頭の使い方をする。
+オブジェクトのスタートラインは"**モノ**"を概念的に捉える頭の使い方をする。
  
  
 ### ワーク1 : モノを概念としてとらえる練習
+■ コップについて考えよう。
 
 Q1. コップの自己紹介を作ってみよう。
 
-
-- 長さ
-- 重さ
-- 水の入る量
-- 今水が入ってる量
-
+- **重さ**は〇〇です。
+- **素材**は〇〇です。
+- **色**は〇〇です。
+- **水の入る量**は〇〇です。
+- **今水が入ってる量**は〇〇です。
 
 Q2. コップを使ってできることは？
-・水を入れる
-・水を捨てる
+- **水を入れる**
+- **水を捨てる**
 
-
-それでは、自分の携帯電話についてそれぞれの考えてみよう。
+　
+■ それでは、自分の携帯電話についてそれぞれの考えてみよう。
 
 Q1. 携帯電話に自己紹介をさせてみよう！
 
@@ -65,7 +66,7 @@ Q2. 携帯電話を使ってできることは？
 <input id="btn_1" type="button" onclick="getCorrect(1)" value="正解を表示" />
 
 
-<div id="span_1" style="color:#de4e2e;padding:5px;display:none;">
+<div id="span_1" style="padding:5px;display:none;">
 
 Q1. 携帯電話に自己紹介をさせてみよう！<br/>
 （例）<br/>
@@ -104,9 +105,11 @@ public class Main {
 自己紹介の項目で挙げた名詞が**フィールド**
 できることを挙げた動詞が**メソッド**
 
-つまり、フィールドは、**モノのステータスや状態を表す**もの。
-メソッドは、そのモノが行う**機能**のこと。
+つまり、
+**フィールド**は、**モノのステータスや状態を表す**もの。
+**メソッド**は、そのモノが行う**機能**のこと。
 
+　
 プログラムで表すと....
 
 ```java
@@ -114,9 +117,10 @@ public class Cup{
 
     /*フィールド*/
     int height; //コップの高さ
-    int weight; //コップの重さ
+    String madeBy; //コップの素材
+    String color; //コップの色
     int max_capacity ; //水の入る量
-    int now_water_state; //現在の水の量
+    int now_waterState; //今の水の量
     
     /*メソッド*/
     //水を入れる
@@ -136,30 +140,32 @@ public class Cup{
 
 ゲームの主人公の考えられるフィールドとメソッド....
 
-〇フィールド
-    名前
-    HP
-    MP
-   攻撃力
-   守備力
-   職業
-   装備（剣）
-   装備（盾）
-   装備（鎧）
-   持ってる道具
+〇フィールド  
+- 名前
+- HP
+- MP
+- レベル
+- 攻撃力
+- 守備力
+- 職業
+- 装備（剣）
+- 装備（盾）
+- 装備（鎧）
+- 持ってる道具
 
 〇メソッド
-    話す
-    攻撃する
-    逃げる
-    道具を使う
-    移動する
+- 話す
+- 攻撃する
+- 逃げる
+- 道具を使う
+- 移動する
+- ツボを投げる
 
 
 　
 実際にプログラムにしてみよう。（クラスのみ）
 
-全部書くと大変なので、今回は、以下の設定で作っています。
+全部書くと大変なので、今回は、以下の設定に絞って作りましょう。
 
 
 ＜クラス＞
@@ -174,7 +180,6 @@ public class Cup{
 | 型 | フィールド名 | フィールドの説明 |
 | :---: | :---: | :-- |
 | String | name | キャラクターの名前 |
-| int | hpMax | HPの最大値 |
 | int | hp | 現在のHPの状態 |
 | int | attackPoint | 攻撃力 |
 
@@ -192,7 +197,7 @@ public class Cup{
 <input id="btn_2" type="button" onclick="getCorrect(2)" value="正解を表示" />
 
 
-<div id="span_2" style="color:#de4e2e;padding:5px;display:none;">
+<div id="span_2" style="padding:5px;display:none;">
 
 正解<br/>
 
@@ -201,7 +206,6 @@ public class Character {
 
     /*フィールド*/
     String name; //キャラクターの名前
-    int hpMax; //HPの最大値
     int hp; //現在のHPの状態
     int attackPoint; //攻撃力
 
@@ -218,6 +222,23 @@ public class Character {
 
 </pre>
 </div>
+
+　
+ちなみに...
+メンバとフィールドがごちゃごちゃになっているあなたへ
+<input id="btn_y1" type="button" onclick="readDigression('y1')" value="余談" />
+
+
+<div id="span_y1" style="padding:5px;display:none;">
+<br/>
+「フィールド」は、上記のようなクラスに定義されている変数や定数を指します。<br/>
+「メンバ」は、クラスを構成する内部要素(「メソッド」や「フィールド」などを含めた)の総称です。<br/>
+<br/>
+ちなみに、メンバ変数と呼ばれたらフィールドのことを指します。<br/>
+<br/>
+他の参考書等で悩まれたら、思い出してみてください。
+</div>
+
 
 
 ## クラスとインスタンス
@@ -237,7 +258,17 @@ Character hero = new Character();
 これで、heroというキャラクターが出来上がりました。
 このheroのことを**インスタンス**と呼びます。
 
-実際にプログラムで書くと以下の用になります。
+
+実際にプログラムで書いて動かしてみましょう。
+このキャラクターを作るために実行するメインクラスを用意します。
+
+＜クラス＞
+
+|項目  |  入力値  |
+| :--- | :---: |
+|  名前（クラス名）  |  Main|
+|public static void main(String[] args)(V)| ☑ |
+
 
 ```java
 public class Main {
@@ -253,12 +284,13 @@ public class Main {
 これで、heroを作りました。
 しかし、今の状態では、何も設定のないキャラクターになっています。
 
+〇キャラクターに設定を加える
+
 キャラクターに名前とhpと攻撃力を設定しましょう。
 以下のプログラムを加えることで、設定することができます。(※)
 
 ```java
 hero.name = "ヒーロー";
-hero.hpMax = 100;
 hero.hp = 100;
 hero.attackPoint = 10;
 ```
@@ -266,8 +298,10 @@ hero.attackPoint = 10;
 フィールドは、以下のように呼び出すことができます。
 
 ```java
-hero.フィールド
+インスタンス.フィールド
 ```
+
+〇キャラクターを動かす
 
 また、メソッドを呼び出すときは、以下のようにやります。
 
@@ -279,7 +313,7 @@ hero.runAway(); //逃げる。
 メソッドは、以下のように呼びだすことができます。
 
 ```java
-hero.メソッド();
+インスタンス.メソッド();
 ```
 
 ### ワーク3：ヒーローを作って実行しよう！
@@ -296,9 +330,8 @@ public class Main {
 
         //キャラクターの設定
         hero.name = "ヒーロー";
-        hero.hpMax = 100;
         hero.hp = 100;
-        hero.attackPoint = 10;
+        hero.attackPoint = 100;
 
         //メソッドの呼び出し
        hero.attack(); //攻撃する。
@@ -310,29 +343,77 @@ public class Main {
 このプログラムを実行してみましょう！
 
 ### お時間ある人用ワーク
-出来た人は、ヒーローだけでなく、他のキャラクターも作ってみよう。
 
-Q1. 以下の設定のキャラクターを作ってみよう。
+<input id="btn_t1" type="button" onclick="moreQuestion('t1')" value="挑戦!" />
+<div id="span_t1" style="padding:5px;display:none;">
+<br/>
+出来た人は、ヒーローだけでなく、他のキャラクターも作ってみよう。<br/>
+<br/>
+Q1. 以下の設定のキャラクターを作ってみよう。<br/>
+<br/>
+名前：ヒロイン<br/>
+現在のHP：70<br/>
+攻撃力：10<br/>
+<br/>
+Q2. 好きなキャラクターを作ってみよう！<br/>
+<br/>
+名前：???<br/>
+現在のHP：??<br/>
+攻撃力：??<br/>
+<br/>
+</div>
 
-名前：ヒロイン
-HPの最大値：70
-現在のHP：70
-攻撃力：10
+正解は...
 
-Q2. 好きなキャラクターを作ってみよう！
+<input id="btn_ta1" type="button" onclick="getCorrect('ta1')" value="正解を表示" />
 
-名前：???
-HPの最大値：??
-現在のHP：??
-攻撃力：??
 
+<div id="span_ta1" style="padding:5px;display:none;">
+正解<br/>
+★が追加されたコードです。
+同じ要領で、好きなキャラクターを作れます。
+<pre style="background-color: #364549;color:#ffffff;">
+public class Main {
+
+    public static void main(String[] args){
+        //heroを作りました。
+        Character hero = new Character();
+        Character heroine = new Character();//★
+
+        //キャラクターの設定
+        hero.name = "ヒーロー";
+        hero.hp = 100;
+        hero.attackPoint = 100;
+
+        //キャラクターの設定
+        heroine.name = "ヒロイン";//★
+        heroine.hp = 70;//★
+        heroine.attackPoint = 10;//★
+
+        //メソッドの呼び出し
+       hero.attack(); //攻撃する。
+       hero.runAway(); //逃げる。
+       heroine.attack(); //攻撃する。//★
+       heroine.runAway(); //逃げる。//★
+
+    }  
+}
+</pre>
+</div>
 
 このように、Characterクラスから、設定を変えるだけで、たくさんのキャラクターを作ることができます。
 
+このように、クラスを定義して、わざわざインスタンスを作成するメリットは、キャラクターをたくさん増やすことができる便利さがあります！
+
+クラスはあくまで、**モノの概念を定義する**
+インスタンス化は、クラスから**実体を作る**
+インスタンスは、作られた**実体そのもの**
+
+ちなみに、heroのように作られたインスタンスは、変数のように扱えることから、**インスタンス変数**とも呼ばれます。
 
 ## コンストラクタ
 
-先ほどのプログラムに、主人公が自分の名前を名乗れるように、Characterクラスにメソッドを追加します。
+先ほどのプログラムに、主人公が自分の名前を名乗れるように、Characterクラスに下記のcallNameメソッドを追加します。
 
 ```java
 void callName(){
@@ -349,7 +430,6 @@ public class Character {
 
     /*フィールド*/
     String name; //キャラクターの名前
-    int hpMax; //HPの最大値
     int hp; //現在のHPの状態
     int attackPoint; //攻撃力
 
@@ -369,16 +449,19 @@ public class Character {
 }
 ```
 
-このように、メソッド内で、自身のクラスのフィールドを使いたいときは、
+このように、メソッド内で、自身のクラスのフィールドを扱いたいときは、
 
 ```java
 this.フィールド
 ```
 
-と表現することで扱うことができます。
+と表現します。
+
+thisは、自分のクラスを指しています。
+
 
 それでは、名前を名乗るメソッドをMainクラスに追加します。
-しかし、プログラムを一部ミスして、以下のようにプログラムを書いてしまったらどうでしょう？（実際にしたのプログラムをコピーして実行するとエラーになってしまします。）
+下のプログラムをコピーして、実行をしてみてください。
 
 ```java
 public class Main {
@@ -388,7 +471,6 @@ public class Main {
         Character hero = new Character();
 
         //キャラクターの設定
-        hero.hpMax = 100;
         hero.hp = 100;
         hero.attackPoint = 10;
 
@@ -400,13 +482,13 @@ public class Main {
 }
 ```
 
-実は、上のプログラムでは、以下のコードが抜けていて、名前を設定し忘れていたので、名前を名乗ることができなかったのです。
+実は、上のプログラムでは、以下のコードが抜けていて、名前を設定し忘れていたので、名前を名乗ることができなかったので、エラーになっていしまいます。
 
 ```java
 hero.name = "ヒーロー";
 ```
 
-このようなことが起こらないように、絶対に初期設定を忘れないようにするために、するのが**コンストラクタ**です。
+このようなことが起こらないように、絶対に**初期設定**を忘れないようにするために、するのが**コンストラクタ**です。
 
 名前を初期設定するコンストラクタは、以下のコードをCharacterクラスに書くことで作ることができます。
 
@@ -415,6 +497,26 @@ Character(String xxx){
     this.name = xxx;
 }
 ```
+
+
+<input id="btn_y2" type="button" onclick="readDigression('y2')" value="余談" />
+<div id="span_y2" style="padding:5px;display:none;">
+
+上記のプログラムでは、引数をxxxとしていますが、一般的なテキストでは、引数をnameにしています。<br/>
+
+<pre style="background-color: #364549;color:#ffffff;">
+
+Character(String name){
+    this.name = name;
+}
+</pre>
+
+
+これは、「変数名は、わかりやすいものにする」をいう規則から、なるもので、実際はどんな名前でもよいです。<br/>
+プログラマーの初心者で、「this.name=name」をみて「なんでnameにnameを入れているのか？」と一見思わせてしまうため、xxxで表現しています。<br/>
+実際に、業務などで扱うときは、引数をnameにすることが望ましいです。<br/>
+</div>
+
 
 実際にプログラムを変えてみましょう。
 
@@ -430,7 +532,6 @@ public class Character {
     }
     /*フィールド*/
     String name; //キャラクターの名前
-    int hpMax; //HPの最大値
     int hp; //現在のHPの状態
     int attackPoint; //攻撃力
 
@@ -462,7 +563,6 @@ public class Main {
         Character hero = new Character("ヒーロー");
 
         //キャラクターの設定
-        hero.hpMax = 100;
         hero.hp = 100;
         hero.attackPoint = 10;
 
@@ -540,7 +640,6 @@ public class Character {
     }
     /*フィールド*/
     private String name; //キャラクターの名前
-    private int hpMax; //HPの最大値
     private int hp; //現在のHPの状態
     private int attackPoint; //攻撃力
 
@@ -577,7 +676,6 @@ public class Character {
     }
     /*フィールド*/
     private String name; //キャラクターの名前
-    private int hpMax; //HPの最大値
     private int hp; //現在のHPの状態
     private int attackPoint; //攻撃力
 
@@ -664,13 +762,11 @@ public class Character {
     /*コンストラクタ*/
     private Character(String xxx, int max, int hp, int point){
         this.name = xxx;
-        this.hpMax = max;
         this.hp = hp;
         this.attackPoint = point;
     }
     /*フィールド*/
     private String name; //キャラクターの名前
-    private int hpMax; //HPの最大値
     private int hp; //現在のHPの状態
     private int attackPoint; //攻撃力
 
@@ -754,19 +850,15 @@ MPの最大値★
 public class MagicCharacter {
 
     /*コンストラクタ*/
-    private MagicCharacter(String xxx, int hpMax, int hp, int mpMax, int mp, int point){
+    private MagicCharacter(String xxx,  int hp,  int mp, int point){
         this.name = xxx;
-        this.hpMax = hpMax;
         this.hp = hp;
-        this.hpMax = mpMax;//★
         this.hp = mp;//★
         this.attackPoint = point;
     }
     /*フィールド*/
     private String name; //キャラクターの名前
-    private int hpMax; //HPの最大値
     private int hp; //現在のHPの状態
-    private int hpMax; //MPの最大値★
     private int mp; //現在のMPの状態★
     private int attackPoint; //攻撃力
 
@@ -790,16 +882,9 @@ public class MagicCharacter {
         this.name = xxxx;
     }
     ・
-　・
-　・
-    // mpMaxのGetter★
-    public int getMpMax(){
-        return this.mpMax;
-    }
-    // mpのSetter★
-    public void setMpMax(int xxxx){
-        this.mpMax = xxxx;
-    }
+    ・
+    ・
+
 
     // mpのGetter★
     public int getMp(){
@@ -920,26 +1005,21 @@ public class MagicCharacter {
 
 <script>
 function getCorrect(id){
-    let span = document.getElementById('span_'+id);
-    let btn = document.getElementById('btn_'+id);
-    if(btn.value == '非表示'){
-        btn.value = '正解を表示';
-        span.style.display = 'none';
-    }else{
-        btn.value = '非表示';
-        span.style.display = 'inline';
-    }
+    changeText(id,'正解を表示',"#de4e2e");
 }
 function moreQuestion(id){
-    changeText(id,'挑戦!');
+    changeText(id,'挑戦!',"#228822");
 }
 function moreTime(id){
-    changeText(id,'時間があれば...');
+    changeText(id,'時間があればやります。',"#99e299");
 }
 function getReference(id){
-    changeText(id,'参考');
+    changeText(id,'参考','#228822');
 }
-function changeText(id,text){
+function readDigression(id){
+    changeText(id,'余談','#228822');
+}
+function changeText(id,text,color){
     let span = document.getElementById('span_'+id);
     let btn = document.getElementById('btn_'+id);
     if(btn.value == '非表示'){
@@ -948,6 +1028,7 @@ function changeText(id,text){
     }else{
         btn.value = '非表示';
         span.style.display = 'block';
+        span.style.color = color
     }
 
 }

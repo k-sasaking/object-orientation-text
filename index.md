@@ -1,23 +1,11 @@
-## 実践課題2-2
-それでは、下記に沿って実践課題をクリアしていきましょう。
+
+# オブジェクト指向って何！？ 
+
+##～Javaで学ぶオブジェクト指向プログラミング～ 【基礎編】
 
 
 
-### 課題2-2-1
-画面追加
-
-### 課題2-2-2
-単体テスト
-
-### 課題2-2-3
-クロステスト
-
-
-# オブジェクト指向って何！？ ～Javaで学ぶオブジェクト指向プログラミング～ 【基礎編】
-
-
-
-## オブジェクト指向が苦手になりやすい理由
+### オブジェクト指向が苦手になりやすい理由
 
 
 1. 専門用語が多すぎる！！(クラス、インスタンス、コンストラクタ、継承、ポリモーフィズム、抽象クラス、インターフェース....)
@@ -66,11 +54,29 @@ Q2. コップを使ってできることは？
 
 Q1. 携帯電話に自己紹介をさせてみよう！
 
-
+<textarea crows="8" cols="50" >
+</textarea>
 
 Q2. 携帯電話を使ってできることは？
 
+<textarea crows="8" cols="50" >
+</textarea>
 
+
+<input id="btn_1" type="button" onclick="getCorrect(1)" value="正解を表示" />
+
+
+<div id="span_1" style="background-color: #364549;color:#ffffff;padding:15px;">
+
+Q1. 携帯電話に自己紹介をさせてみよう！
+（例）
+機種、メーカー、OS、電話番号、データ容量、契約している通信会社、メールアドレス、アプリ、電池の残量....
+
+Q2. 携帯電話を使ってできることは？
+（例）
+電話をする、電話を受け取る、メールを送る、メールを受信する、アドレス帳を開く、アドレス帳に登録する、アプリを開く....
+
+</div>
 
 
 ## フィールドとメソッドとは？
@@ -95,11 +101,11 @@ public class Cup{
     /*メソッド*/
     //水を入れる
     void input(){
-        
+        System.out.println("水を入れました");       
     }
     //水を捨てる
     void output(){
-    
+       System.out.println("水を捨てました");    
     }
 }
 ```
@@ -132,16 +138,35 @@ public class Cup{
 
 
 実際にプログラムにしてみよう。（クラスのみ）
-    
+
+全部書くと大変なので、今回は、以下の設定で作っています。
+
+＜フィールド＞
+
+| 型 | フィールド名 | フィールドの説明 |
+| :---: | :---: | :-- |
+| String | name | キャラクターの名前 |
+| int | hpMax | HPの最大値 |
+| int | hp | 現在のHPの状態 |
+| int | attackPoint | 攻撃力 |
+
+
+＜メソッド＞
+
+| 戻り値の型 | 引数 | メソッド名 | メソッドの処理 |
+| :---: | :---: | :-- |
+| なし(void) | なし | attack | "攻撃"とコンソールに表示する。 |
+|  なし(void)  | なし | runAway | "逃げる"とコンソールに表示する。 |
+
 
 ```java
 public class Character {
 
     /*フィールド*/
     String name; //キャラクターの名前
-    int max_hp; //HPの最大値
+    int hpMax; //HPの最大値
     int hp; //現在のHPの状態
-    int attack_point; //攻撃力
+    int attackPoint; //攻撃力
 
     /*フィールド*/
     //攻撃する
@@ -149,7 +174,7 @@ public class Character {
         System.out.println("攻撃");
     }
     //逃げる
-    void run_away(){
+    void runAway(){
         System.out.println("逃げる");
     }  
 }
@@ -194,9 +219,9 @@ public class Main {
 
 ```java
 hero.name = "ヒーロー";
-hero.hp_max = 100;
+hero.hpMax = 100;
 hero.hp = 100;
-hero.attack_point = 10;
+hero.attackPoint = 10;
 ```
 
 フィールドは、以下のように呼び出すことができます。
@@ -209,7 +234,7 @@ hero.フィールド
 
 ```java
 hero.attack(); //攻撃する。
-hero.run_away(); //逃げる。
+hero.runAway(); //逃げる。
 ```
 
 メソッドは、以下のように呼びだすことができます。
@@ -232,13 +257,13 @@ public class Main {
 
         //キャラクターの設定
         hero.name = "ヒーロー";
-        hero.hp_max = 100;
+        hero.hpMax = 100;
         hero.hp = 100;
-        hero.attack_point = 10;
+        hero.attackPoint = 10;
 
         //メソッドの呼び出し
        hero.attack(); //攻撃する。
-       hero.run_away(); //逃げる。
+       hero.runAway(); //逃げる。
     }  
 }
 ```
@@ -271,7 +296,7 @@ HPの最大値：??
 先ほどのプログラムに、主人公が自分の名前を名乗れるように、Characterクラスにメソッドを追加します。
 
 ```java
-void call_name(){
+void callName(){
     System.out.println("私の名前は、"+this.name+"だ！");
 }  
 ```
@@ -285,9 +310,9 @@ public class Character {
 
     /*フィールド*/
     String name; //キャラクターの名前
-    int max_hp; //HPの最大値
+    int hpMax; //HPの最大値
     int hp; //現在のHPの状態
-    int attack_point; //攻撃力
+    int attackPoint; //攻撃力
 
     /*フィールド*/
     //攻撃する
@@ -295,11 +320,11 @@ public class Character {
         System.out.println("攻撃");
     }
     //逃げる
-    void run_away(){
+    void runAway(){
         System.out.println("逃げる");
     }  
     //自分の名前を名乗る
-    void call_name(){
+    void callName(){
         System.out.println("私の名前は、"+this.name+"だ！");
     }  
 }
@@ -324,14 +349,14 @@ public class Main {
         Character hero = new Character();
 
         //キャラクターの設定
-        hero.hp_max = 100;
+        hero.hpMax = 100;
         hero.hp = 100;
-        hero.attack_point = 10;
+        hero.attackPoint = 10;
 
         //メソッドの呼び出し
        hero.attack(); //攻撃する。
-       hero.run_away(); //逃げる。
-       hero.call_name();//名前を名乗る
+       hero.runAway(); //逃げる。
+       hero.callName();//名前を名乗る
     }  
 }
 ```
@@ -366,9 +391,9 @@ public class Character {
     }
     /*フィールド*/
     String name; //キャラクターの名前
-    int max_hp; //HPの最大値
+    int hpMax; //HPの最大値
     int hp; //現在のHPの状態
-    int attack_point; //攻撃力
+    int attackPoint; //攻撃力
 
     /*フィールド*/
     //攻撃する
@@ -376,7 +401,7 @@ public class Character {
         System.out.println("攻撃");
     }
     //逃げる
-    void run_away(){
+    void runAway(){
         System.out.println("逃げる");
     }  
 }
@@ -398,33 +423,28 @@ public class Main {
         Character hero = new Character("ヒーロー");
 
         //キャラクターの設定
-        hero.hp_max = 100;
+        hero.hpMax = 100;
         hero.hp = 100;
-        hero.attack_point = 10;
+        hero.attackPoint = 10;
 
         //メソッドの呼び出し
        hero.attack(); //攻撃する。
-       hero.run_away(); //逃げる。
-       hero.call_name();//名前を名乗る
+       hero.runAway(); //逃げる。
+       hero.callName();//名前を名乗る
     }  
 }
 ```
 
 ### ワーク4 :他の値も初期設定できるようにしましょう。
-<input type="button" onclick="getResult4()" value="答えを表示" />
-<script>
-function getResult4(){
-    alert("ひ・み・つ");
-}
-</script>
+<input id="btn_4" type="button" onclick="getCorrect(4)" value="正解を表示" />
 
-<span>
-＜正解＞
 
-```
-ここにに正解を記載
-```
-</span>
+<div id="span_4" style="background-color: #364549;color:#ffffff;padding:15px;">
+
+int a = 0;
+
+
+</div>
 
 
 ## カプセル化
@@ -450,8 +470,8 @@ public class Main {
 
         //メソッドの呼び出し
        hero.attack(); //攻撃する。
-       hero.run_away(); //逃げる。
-       hero.call_name();//名前を名乗る
+       hero.runAway(); //逃げる。
+       hero.callName();//名前を名乗る
     }  
 }
 ```
@@ -481,9 +501,9 @@ public class Character {
     }
     /*フィールド*/
     private String name; //キャラクターの名前
-    private int max_hp; //HPの最大値
+    private int hpMax; //HPの最大値
     private int hp; //現在のHPの状態
-    private int attack_point; //攻撃力
+    private int attackPoint; //攻撃力
 
     /*フィールド*/
     //攻撃する
@@ -491,7 +511,7 @@ public class Character {
         System.out.println("攻撃");
     }
     //逃げる
-    public void run_away(){
+    public void runAway(){
         System.out.println("逃げる");
     }  
 }
@@ -518,9 +538,9 @@ public class Character {
     }
     /*フィールド*/
     private String name; //キャラクターの名前
-    private int max_hp; //HPの最大値
+    private int hpMax; //HPの最大値
     private int hp; //現在のHPの状態
-    private int attack_point; //攻撃力
+    private int attackPoint; //攻撃力
 
     /*フィールド*/
     //攻撃する
@@ -528,18 +548,13 @@ public class Character {
         System.out.println("攻撃");
     }
     //逃げる
-    public void run_away(){
+    public void runAway(){
         System.out.println("逃げる");
     }  
 }
 ```
 
-<input type="button" onclick="getResult4()" value="答えを表示" />
-<script>
-function getResult4(){
-    alert("ひ・み・つ");
-}
-</script>
+<input type="button" onclick="getCorrect(4)" value="答えを表示" />
 
 
 ちなみに...このprivateやpublicのようなものを**アクセス修飾子**と呼びます。
@@ -571,8 +586,8 @@ public class Main {
 
         //メソッドの呼び出し
        hero.attack(); //攻撃する。
-       hero.run_away(); //逃げる。
-       hero.call_name();//名前を名乗る
+       hero.runAway(); //逃げる。
+       hero.callName();//名前を名乗る
 
         //ナレーション
         System.out.println(hero.name+"は、レベルアップしました。");        
@@ -610,15 +625,15 @@ public class Character {
     /*コンストラクタ*/
     private Character(String xxx, int max, int hp, int point){
         this.name = xxx;
-        this.max_hp = max;
+        this.hpMax = max;
         this.hp = hp;
-        this.attack_point = point;
+        this.attackPoint = point;
     }
     /*フィールド*/
     private String name; //キャラクターの名前
-    private int max_hp; //HPの最大値
+    private int hpMax; //HPの最大値
     private int hp; //現在のHPの状態
-    private int attack_point; //攻撃力
+    private int attackPoint; //攻撃力
 
     /*フィールド*/
     //攻撃する
@@ -626,7 +641,7 @@ public class Character {
         System.out.println("攻撃");
     }
     //逃げる
-    public void run_away(){
+    public void runAway(){
         System.out.println("逃げる");
     }
 
@@ -700,21 +715,21 @@ MPの最大値★
 public class MagicCharacter {
 
     /*コンストラクタ*/
-    private MagicCharacter(String xxx, int max_hp, int hp, int max_mp, int mp, int point){
+    private MagicCharacter(String xxx, int hpMax, int hp, int mpMax, int mp, int point){
         this.name = xxx;
-        this.max_hp = max_hp;
+        this.hpMax = hpMax;
         this.hp = hp;
-        this.max_hp = max_mp;//★
+        this.hpMax = mpMax;//★
         this.hp = mp;//★
-        this.attack_point = point;
+        this.attackPoint = point;
     }
     /*フィールド*/
     private String name; //キャラクターの名前
-    private int max_hp; //HPの最大値
+    private int hpMax; //HPの最大値
     private int hp; //現在のHPの状態
-    private int max_mp; //MPの最大値★
+    private int hpMax; //MPの最大値★
     private int mp; //現在のMPの状態★
-    private int attack_point; //攻撃力
+    private int attackPoint; //攻撃力
 
     /*フィールド*/
     //攻撃する
@@ -722,7 +737,7 @@ public class MagicCharacter {
         System.out.println("攻撃");
     }
     //逃げる
-    public void run_away(){
+    public void runAway(){
         System.out.println("逃げる");
     }
 
@@ -738,13 +753,13 @@ public class MagicCharacter {
     ・
 　・
 　・
-    // max_mpのGetter★
-    public int getMaxMp(){
-        return this.max_mp;
+    // mpMaxのGetter★
+    public int getMpMax(){
+        return this.mpMax;
     }
     // mpのSetter★
-    public void setMaxMp(int xxxx){
-        this.max_mp = xxxx;
+    public void setMpMax(int xxxx){
+        this.mpMax = xxxx;
     }
 
     // mpのGetter★
@@ -862,4 +877,40 @@ public class MagicCharacter {
 
 それが、**デザインパターン**と言われるものです。
 この分野は、次回の応用編で紹介しますので、乞うご期待！！
+
+
+<script>
+function getCorrect(id){
+    let span = document.getElementById('span_'+id);
+    let btn = document.getElementById('btn_'+id);
+    if(btn.value == '非表示'){
+        btn.value = '正解を表示';
+        span.style.display = 'none';
+    }else{
+        btn.value = '非表示';
+        span.style.display = 'inline';
+    }
+}
+function moreQuestion(id){
+    changeText(id,'挑戦!');
+}
+function moreTime(id){
+    changeText(id,'時間があれば...');
+}
+function getReference(id){
+    changeText(id,'参考');
+}
+function changeText(id,text){
+    let span = document.getElementById('span_'+id);
+    let btn = document.getElementById('btn_'+id);
+    if(btn.value == '非表示'){
+        btn.value = text;
+        span.style.display = 'none';
+    }else{
+        btn.value = '非表示';
+        span.style.display = 'inline';
+    }
+
+}
+</script>
 

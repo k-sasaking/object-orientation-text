@@ -52,16 +52,17 @@
 
 (例)
 
-<img id="pictures_1" src="img/pictures/01.jpg" style="display:block;" onclick="picturesClickEvent(1)">
-<img id="pictures_2" src="img/pictures/02.jpg" style="display:none;" onclick="picturesClickEvent(2)">
-<img id="pictures_3" src="img/pictures/03.jpg" style="display:none;" onclick="picturesClickEvent(3)">
-<img id="pictures_4" src="img/pictures/04.jpg" style="display:none;" onclick="picturesClickEvent(4)">
-<img id="pictures_5" src="img/pictures/05.jpg" style="display:none;" onclick="picturesClickEvent(5)">
-<img id="pictures_6" src="img/pictures/06.jpg" style="display:none;" onclick="picturesClickEvent(6)">
-<img id="pictures_7" src="img/pictures/07.jpg" style="display:none;" onclick="picturesClickEvent(7)">
-<img id="pictures_8" src="img/pictures/08.jpg" style="display:none;" onclick="picturesClickEvent(8)">
+<img id="pictures_1" src="img/pictures/01.JPG" style="display:block;" onclick="picturesClickEvent(1)" />
+<img id="pictures_2" src="img/pictures/02.JPG" style="display:none;" onclick="picturesClickEvent(2)" />
+<img id="pictures_3" src="img/pictures/03.JPG" style="display:none;" onclick="picturesClickEvent(3)" />
+<img id="pictures_4" src="img/pictures/04.JPG" style="display:none;" onclick="picturesClickEvent(4)" />
+<img id="pictures_5" src="img/pictures/05.JPG" style="display:none;" onclick="picturesClickEvent(5)" />
+<img id="pictures_6" src="img/pictures/06.JPG" style="display:none;" onclick="picturesClickEvent(6)" />
+<img id="pictures_7" src="img/pictures/07.JPG" style="display:none;" onclick="picturesClickEvent(7)" />
+<img id="pictures_8" src="img/pictures/08.JPG" style="display:none;" onclick="picturesClickEvent(8)" />
 
-　
+
+　　
 コップ、ペットボトル、私、クツ、ペン、パソコン、スマホ...全てオブジェクトである。
 
 
@@ -76,7 +77,7 @@
  
 ### ワーク1 : モノを概念としてとらえる練習
 ■ コップについて考えよう。
-<img src="img/pictures/01.jpg">
+<img src="img/pictures/01.JPG">
 
 Q1. コップの自己紹介を作ってみよう。
 

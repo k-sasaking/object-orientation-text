@@ -490,6 +490,10 @@ hero.name = "ヒーロー";
 
 このようなことが起こらないように、絶対に**初期設定**を忘れないようにするために、するのが**コンストラクタ**です。
 
+**コンストラクタ**は、**インスタンスが生成されたとき**に、呼び出される特殊なメソッドです。
+インスタンスが生成されたタイミングで、値を入れることができるので、上記のようなことが起こらないように防ぐことができます。。
+
+
 名前を初期設定するコンストラクタは、以下のコードをCharacterクラスに書くことで作ることができます。
 
 ```java
@@ -497,6 +501,8 @@ Character(String xxx){
     this.name = xxx;
 }
 ```
+
+コンストラクタの引数xxxを自身のフィールドnameに値を入れていることがわかります。
 
 
 <input id="btn_y2" type="button" onclick="readDigression('y2')" value="余談" />
@@ -516,7 +522,6 @@ Character(String name){
 プログラマーの初心者で、「this.name=name」をみて「なんでnameにnameを入れているのか？」と一見思わせてしまうため、xxxで表現しています。<br/>
 実際に、業務などで扱うときは、引数をnameにすることが望ましいです。<br/>
 </div>
-
 
 実際にプログラムを変えてみましょう。
 
@@ -548,7 +553,9 @@ public class Character {
 ```
 
 すると...Mainクラスにエラーが出てきます。
-これは、インスタンスを作る(heroを作る)時に、名前が設定されていないじゃんと怒られているからです。
+これは、インスタンスを作る(heroを作る)時に、「名前が設定されていないじゃん」と怒られているからです。
+
+これは、コンストラクタを定義したおかげで、インスタンスを生成したタイミングで、値を入れる制約を設けたゆえに、エラーが検出されています。
 
 それでは、実際に名前を設定しましょう。
 Mainクラスを以下のように変えてます。
@@ -574,22 +581,114 @@ public class Main {
 }
 ```
 
+このプログラムを実際に動かしてみましょう。
+これで、名前を名乗ることができたかと思います。
+
+
 ### ワーク4 :他の値も初期設定できるようにしましょう。
+他のhpとattackPointもコンストラクタで定義をするようにしましょう。
+
 <input id="btn_4" type="button" onclick="getCorrect(4)" value="正解を表示" />
 
+<div id="span_4" style=";padding:5px;display:none;">
+正解<Characterクラス>
+<pre style="background-color: #364549;color:#ffffff;">
+public class Character {
 
-<div id="span_4" style="background-color: #364549;color:#ffffff;padding:15px;">
+    /*コンストラクタ*/
+    Character(String xxx, int hp, int ap){
+        this.name = xxx;
+        this.hp = hp;
+        this.attackPoint = ap;
+    }
+    /*フィールド*/
+    String name; //キャラクターの名前
+    int hp; //現在のHPの状態
+    int attackPoint; //攻撃力
 
-int a = 0;
+    /*フィールド*/
+    //攻撃する
+    void attack(){
+        System.out.println("攻撃");
+    }
+    //逃げる
+    void runAway(){
+        System.out.println("逃げる");
+    }  
+}
+</pre>
+
+正解＜Mainクラス＞
+<pre style="background-color: #364549;color:#ffffff;">
 
 
+```java
+public class Main {
+    
+    public static void main(String[] args){
+        //heroを作りました。
+        Character hero = new Character("ヒーロー", 100,  10);
+
+        //メソッドの呼び出し
+       hero.attack(); //攻撃する。
+       hero.runAway(); //逃げる。
+       hero.callName();//名前を名乗る
+    }  
+}
+```
+</pre>
 </div>
 
+プログラムが少しコンパクトになりました。
+このように、コンストラクタを定義することで、インスタンスの生成時に値を入れることを義務付けることができます。
 
+コンストラクタについての余談
+
+<input id="btn_y3" type="button" onclick="readDigression('y3')" value="余談" />
+<div id="span_y3" style="padding:5px;display:none;">
+
+コンストラクタが何者かというと、実はメソッドの仲間です。
+
+コンストラクタが定義されていない場合でも、デフォルトで、下記のコンストラクタが実装されています。
+<pre style="background-color: #364549;color:#ffffff;">
+
+Character(){
+}
+</pre>
+また、コンストラクタもメソッドと同様に、引数の型や個数を変えることで、オーバーライドの効果を持たせることができます。
+<pre style="background-color: #364549;color:#ffffff;">
+
+Character(String xxx){
+    /*処理*/
+}
+Character(int hp){
+    /*処理*/
+}
+Character(String xxx,int hp){
+    /*処理*/
+}
+Character(String xxx,int hp,int ap){
+    /*処理*/
+}
+</pre>
+
+このように、コンストラクタを定義すれば、さまざまなパタンの初期値を呼び出すことができます。
+
+また、あまりケースとして多くはないですが、クラスのメソッド内で、コンストラクタを呼ぶときは、以下のように呼び出します。
+
+<pre style="background-color: #364549;color:#ffffff;">
+this();//引数ナシ
+this(name,hp);//引数アリ
+</pre>
+
+</div>
 ## カプセル化
-上記のプログラムで、初期設定もちゃんと行えるようにできたので、安心...
-と言いたいところですが、実は、今の状態では、Mainプログラムから勝手に、初期設定をした値を変えることができてしまいます。
+コンストラクタがちゃんと定義されているので、初期設定もちゃんと行えるようにできたので、安心...
 
+と言いたいところですが、実は、今の状態のままでは、まだまだ危険な状態です。
+それは、Mainプログラムから勝手に、せっかく初期設定をしたのに値を変えることができてしまうからです。
+
+　
 試しに、いたずらで、「ヒーロー」の名前を「スライム」に変えてしまいましょう。
 
 以下のプログラムをコピーして実行してみましょう。
@@ -602,7 +701,7 @@ public class Main {
     
     public static void main(String[] args){
         //heroを作りました。
-        Character hero = new Character("ヒーロー", 100, 100, 10);
+        Character hero = new Character("ヒーロー", 100,  10);
 
         //いたずら
         hero.name = "スライム";
@@ -624,7 +723,11 @@ public class Main {
 そのようなことを防ぐために、フィールドの値を見れないようにする方法があります。
 それが、**カプセル化**です。
 
-カプセル化は、Characterクラスに、privateとpublicを追加するだで、守ることができます。
+カプセル化は、Characterクラスに、**private**と**public**を追加するだで、守ることができます。
+**private**は、プライベートなので外から値を見られないようにします。
+**public**は、公なので、どこからでも見ることができます。
+
+今回は、フィールドをprivateにして、メソッドをpublicに設定します。
 
 Characterクラスを変えてみましょう。
 
@@ -691,8 +794,18 @@ public class Character {
 }
 ```
 
-<input type="button" onclick="getCorrect(4)" value="答えを表示" />
+理由：
+<textarea rows="4" cols="50" ></textarea>
 
+<input id="btn_5" type="button" onclick="getCorrect(5)" value="正解を表示" />
+
+<div id="span_5" style=";padding:5px;display:none;">
+コンストラクタは、インスタンスが生成されるときに呼び出されるメソッドなので、それがprivateになってしまうと、インスタンスが生成できなくなってしまうため...<br/>
+
+※java.util.Calendarのように、わざとインスタンスを外から作らせないようにする手法もあります。(詳しくは、講義の最後で....)<br/>
+</div>
+
+#### アクセス修飾子
 
 ちなみに...このprivateやpublicのようなものを**アクセス修飾子**と呼びます。
 アクセス修飾子は、以下の4つに設定できます。

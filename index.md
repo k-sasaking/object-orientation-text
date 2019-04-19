@@ -1,20 +1,48 @@
 
 # オブジェクト指向って何！？ 
 
-##～Javaで学ぶオブジェクト指向プログラミング～ 【基礎編】
+## ～Javaで学ぶオブジェクト指向プログラミング～ 【基礎編】
 
-<img src="a0001_017879.jpg"/>
+
+<img src="img/a0001_017879.jpg"/>
+
+
+### オブジェクト指向は難しい？
+
+#####「オブジェクト指向」≠「難しい」
+
+#####「オブジェクト指向」＝「シンプルに単純に...」
+
 
 ### オブジェクト指向が苦手になりやすい理由
 
 
 1. 専門用語が多すぎる！！
+
 (クラス、インスタンス、コンストラクタ、継承、ポリモーフィズム、抽象クラス、インターフェース....)
 
 1. 一般的なカリキュラム上、Javaの基礎を学んだ後に学ぶので、そもそも考え方や頭の使い方が一気に変わるから...。
 
 1. そもそも研修レベルの規模ではありがたみを感じにくい...。
 
+1. 書き方は教えるけど、なぜそう書くかまでは教えてもらえない。
+
+## オブジェクト指向ってなに？
+そもそもプログラムを作るときの大きな考え方が３つあるのは、ご存知ですか？
+
+**手続き型プログラミング**
+
+上から順番に文章のようにプログラムを書く考え方
+
+**関数型プログラミング**
+
+関数（InputとOutputをもつ処理のかたまり）をつなげて組み立てるプログラミングの考え方
+
+**オブジェクト指向プログラミング**
+
+下記のWikipediaを見てもらえれば、すべてがわかります..。
+
+<a href="javascript:alert('冗談です。');">https:\//ja.wikipedia.org/wiki/オブジェクト指向プログラミング</a>
 
 
 ## そもそもオブジェクトってなに？
@@ -23,6 +51,17 @@
 
 
 (例)
+
+<img id="pictures_1" src="img/pictures/01.jpg" style="display:block;" onclick="picturesClickEvent(1)">
+<img id="pictures_2" src="img/pictures/02.jpg" style="display:none;" onclick="picturesClickEvent(2)">
+<img id="pictures_3" src="img/pictures/03.jpg" style="display:none;" onclick="picturesClickEvent(3)">
+<img id="pictures_4" src="img/pictures/04.jpg" style="display:none;" onclick="picturesClickEvent(4)">
+<img id="pictures_5" src="img/pictures/05.jpg" style="display:none;" onclick="picturesClickEvent(5)">
+<img id="pictures_6" src="img/pictures/06.jpg" style="display:none;" onclick="picturesClickEvent(6)">
+<img id="pictures_7" src="img/pictures/07.jpg" style="display:none;" onclick="picturesClickEvent(7)">
+<img id="pictures_8" src="img/pictures/08.jpg" style="display:none;" onclick="picturesClickEvent(8)">
+
+　
 コップ、ペットボトル、私、クツ、ペン、パソコン、スマホ...全てオブジェクトである。
 
 
@@ -37,6 +76,7 @@
  
 ### ワーク1 : モノを概念としてとらえる練習
 ■ コップについて考えよう。
+<img src="img/pictures/01.jpg">
 
 Q1. コップの自己紹介を作ってみよう。
 
@@ -52,6 +92,7 @@ Q2. コップを使ってできることは？
 
 　
 ■ それでは、自分の携帯電話についてそれぞれの考えてみよう。
+<img src="img/smapho.png">
 
 Q1. 携帯電話に自己紹介をさせてみよう！
 
@@ -960,7 +1001,6 @@ public void setName(String xxxx){
 
 <input id="btn_6" type="button" onclick="getCorrect(6)" value="正解を表示" />
 
-
 <div id="span_6" style=";padding:5px;display:none;">
 正解<br/>
 ★が追加したコード
@@ -1420,38 +1460,163 @@ public class MagicCharacter {
 
 試しに、BasicCharacterクラスを作成し、それを継承する勇者キャラクタークラス(HeroCharacter)と魔法使いキャラクタークラス(MagicianCharacter)を作成します。
 
+以前、作成したCharacterクラスを少し機能を削って作ります。
+
 ＜BasicCharacter＞
 
 ```java
+public class BasicCharacter {
+
+	/*コンストラクタ*/
+    public Character(String xxx, int hp, int point){
+        this.name = xxx;
+        this.hp = hp;
+        this.attackPoint = point;
+    }
+    
+ 
+    /*フィールド*/
+    private String name; //キャラクターの名前
+    private int hp; //現在のHPの状態
+    private int attackPoint; //攻撃力
+
+    /*メソッド*/
+    //攻撃する
+    public void attack(){
+        System.out.println("攻撃");
+    }
+    //逃げる
+    public void runAway(){
+        System.out.println("逃げる");
+    }
+
+    /*GetterとSetter*/
+    // nameのGetter
+    public String getName(){
+        return this.name;
+    }
+
+    // hpのGetter
+    public int getHp(){
+        return this.hp;
+    }
+    // hpのSetter
+    public void setHp(int hp){
+        this.hp = hp;
+    }
+
+    // attackPointのGetter
+    public int getAttackPoint(){
+        return this.attackPoint;
+    }
+}
 ```
 
 ＜HeroCharacter＞
 
 
 ```java
+public class HeroCharacter extends BasicCharacter {
+
+	/*コンストラクタ*/
+    public HeroCharacter(String xxx, int hp, int point){
+        super(xxx,hp,point);
+    }
+
+    /*メソッド*/
+    //攻撃する
+    @Override
+    public void attack(){
+        System.out.println("剣で攻撃");
+    }
+
+}
 ```
 
 このように、extends 親クラスと記載することで、親クラスに書かれていることを重複して書かなくてもよくなります。
 
+しかし、コンストラクタだけは、自身の名前で呼ばなければならないので、注意が必要です。
 
-### ワーク7：同様に、MagicianCharacterを作ってみましょう。
+親のコンストラクタを呼ぶ場合は、
 
+```java
+super();
+```
+
+を使います。
+
+**this**は、自分自身のクラスのフィールドやメソッド、コンストラクタを表していたように、
+
+**super**は、親クラスのフィールドやメソッド、コンストラクタを表します。
+
+
+また、上記のメソッドでは、BasicCharacterクラスにattackメソッドが書かれているものを、同じものを定義しています。
+
+
+このように、親クラスで定義しているものを子クラスで同じものを定義すると、定義が上書きされてしまうのです。これを**オーバーライド**と言います。
+
+上記のプログラムでは、**@Override**と記載していますが、書かなくてもプログラムは動きます。
+これは、明示的にOverrideと記載することで、上書きしていることを明示しています。
+
+うっかり親クラスで定義されているメソッドを消してオーバーライドしないように注意をしましょう。
+**@Override**は、親クラスに同じメソッドがない場合は、コンパイルエラーで知らせてくれるので、
+親クラスに持っているか不安な時は、**@Override**をつけて、エラーになるかどうか試してみるとよいでしょう。
+
+試しに、コンストラクタに**@Override**をつけるとエラーになります。
+
+```java
+/*コンストラクタ*/
+@Override // エラーで知らせてくれる
+public HeroCharacter(String xxx, int hp, int point){
+    super(xxx,hp,point);
+}
+```
+
+
+
+### ワーク7：同様に、MagicaianCharacterを作ってみましょう。
+
+それでは、下記の条件を入れて、MagicianCharacterクラスを作ってみましょう。
+
+＜条件＞
+- BasicCharacterクラスを継承する
+- mpのフィールドを定義する
+- コンストラクタでmpの値も設定するようにする
+- attackメソッドをオーバーライドし、「杖で攻撃」を出力する
+- magicメソッドを新しく追加し、「魔法を使用」を出力する
+
+
+<input id="btn_7" type="button" onclick="getCorrect(7)" value="正解を表示" />
+
+<div id="span_7" style=";padding:5px;display:none;">
+正解<br/>
 ＜MagicianCharacter＞
+<pre style="background-color: #364549;color:#ffffff;">
 
-```java
-```
+public class MagicianCharacter extends BasicCharacter {
 
+	/*コンストラクタ*/
+    public MagicianCharacter(String xxx, int hp, int mp, int point){
+        super(xxx,hp,point);
+        this.mp = mp;
+    }
 
-上記のプログラムでは、BasicCharacterクラスのattackメソッドで攻撃をしますが、勇者は、剣で攻撃をしたいですし、魔法使いはステッキを使って攻撃をします。この場合、勇者と魔法使いクラスにそれぞれ以下のように、attackメソッドを追加することもできます。
+    /*フィールド*/
+    private int mp;
+    /*メソッド*/
+    //攻撃する
+    @Override
+    public void attack(){
+        System.out.println("杖で攻撃");
+    }
+    //魔法を使う
+    public void magic(){
+        System.out.println("魔法を使用");
+    }
+}
+</pre>
 
-```java
-```
-
-```java
-```
-
-
-実は、親クラスで定義しているものを子クラスで同じものを定義すると、定義が上書きされてしまうのです。これを**オーバーライド**と言います。
+</div>
 
 
 
@@ -1460,7 +1625,8 @@ public class MagicCharacter {
 
 実は、抽象クラスとインターフェースは「難しい」ものではなく、むしろ物事を「単純化」する考え方です。
 
-単純化とは、すなわち、物事を抽象的にすることです。
+単純化とは、すなわち、物事を**抽象的**にすることです。
+
 
 ### 抽象クラス
 
@@ -1468,7 +1634,7 @@ public class MagicCharacter {
 この攻撃するメソッドは、キャラクターによって、動作が微妙に違います。
 
 勇者は、「剣で攻撃」
-魔法使いは、「ステッキで攻撃」
+魔法使いは、「杖で攻撃」
 格闘家は、「パンチで攻撃」
 
 しかし、単純に見たら、キャラクターが攻撃をしていることにはかわりありません。
@@ -1484,34 +1650,123 @@ public class MagicCharacter {
 
 これで、抽象クラスの完成です。
 
+このようにメソッドの戻り値と引数のみを定義して、具体的な中身をあえて書かないようにすることで、
+「継承したクラスで具体的なこと書いてね！」というメッセージになっているのです。
+
+このようなメソッドを**抽象メソッド**といいます。
+
+抽象メソッドは、子クラスにオーバーライドさせるために定義するメソッドです。
+
+この場合、BasicCharacterクラスは、attackメソッドを全部の子クラスで具体的なメソッドとして、定義させたいのです。
+しかし、BasicCharacterクラスでは、どんな攻撃をするのか決めることができないため、抽象的なメソッドだけ準備する。という考え方です。
+
+しかし、抽象クラスには、デメリットがあります。
+それは、抽象クラス自身のインスタンスを作ることはできません。
+
+なぜなら、インスタンスができてしまった場合、抽象メソッドを実行することができないからです。
+
+
+#### なぜ、抽象クラスなんてわざわざ作るのか？
+それは、基本的には、複数人でプログラムを開発するときに大きなメリットがあります。
+
+例えば、ECサイトで、商品というクラスを作る際に、**必ず定義しておいてほしいものを決めます。**
+
+フィールドは、
+
+値段、商品名、カテゴリー、価格....
+
+メソッドは、
+
+個数に応じた合計金額を返すメソッド、海外からの輸入商品かどうかを返すメソッド...
+
+
+これらを書面等で共有していても、だれか一人がコーディングミスをするだけで、バグになってしまいます。
+
+その時に、BasicProductというクラスを作って、あとは、その「クラスを継承する」という取り決めだけ
+決めてしまえば、楽になりませんか？
+
+このように抽象は、**どんな機能を子クラスで実装してほしいかを決めるためのクラス**といってもいいでしょう。
+
+このように、抽象クラスは、規模が大きければ大きいほど、力を発揮するとても便利な機能です。
+
+
+
 ### インターフェース
-続いて、インターフェースについて扱います。
-インターフェースは、抽象クラスをさらに抽象化したものです。
+いよいよ、最後のインターフェース。
+最後にまた新しい単語....と思った方も多いはず。
+
+でも、どこかで耳にしたことがある言葉のはず。
+○○インターフェースという言葉は、割とよく使われます。
 インターフェースという言葉自体は、「接している面、境界面」という意味があります。
 
-インターフェースの考え方が用いられるのは、例えば、先ほど作成したキャラクターが戦うとき、「バトル」という側面を見れば、「戦う」「攻撃する」「逃げる」「アイテムを使う」などの最低限の機能があれば、どんなキャラクターでも戦うことができます。
+例えば、ユーザーインターフェースは、主にユーザーとアプリケーションの接するボタンやタッチパネルなど、全般を指します。
+
+オブジェクト指向でいう
+**インターフェース**は、**抽象クラスをさらに抽象化したもの**と捉えるとよいです。
+
+基本的には、抽象クラスと同じように、「最低限の取り決めだけを決める」ためのものです。
+
+
+例えば、先ほど作成したキャラクターが戦うとき、「バトル」という側面を見れば、「戦う」「攻撃する」「逃げる」「アイテムを使う」などの最低限の機能があれば、どんなキャラクターでも戦うことができます。
+
+
+
 
 このように、最低限のものを揃えることを定義するときに、インターフェースが使われることがあります。
 
-実際にインターフェースを作ってみよう！
 
+#### インターフェースと抽象クラスの違い
+ここまで聞くと、インターフェースと抽象クラスって何が違うの？となります。（多くの人が持つ疑問）
+
+
+実際、使う目的は、ほぼほぼ同じです。
+インターフェースや抽象クラスで定義されているものを実装クラスや子クラスで具体的に決めてほしいという目的です。
+
+しかし、インターフェースと抽象クラスは、それぞれ得意不得意があるのです。
+
+##### 抽象クラスの得意分野・不得意分野
+○得意
+抽象的なメソッドを定義できる
+具体的なメソッドも定義できる
+
+○不得意
+「親:子」は、必ず「1:多」にならないといけない。
+
+
+##### インターフェースの得意分野・不得意分野
+○得意
+多重継承ができる。「親:子」は、「多:多」になってもよい。
+抽象的なメソッドを定義できる
+
+○不得意
+具体的なメソッドを定義できない
 
 ```java
 ```
 
 ```java
 ```
-
-
-
 
 ## デザインパターンの紹介
-今回学んだオブジェクト指向は、概念を理解するためのものでした。
+今回学んだオブジェクト指向の概念を理解し、基礎を学ぶものでした。
 
-しかし、実際このインターフェースや抽象クラスや継承やらを使って何ができるの？実際のプロジェクトにどのように生かしたらいいの？ということを実践で使われているいくつかのパターンがあります。
+今日の学んだことを理解できれば、オブジェクト指向は、難しいものではなく、よりシンプルで単純化する考えだったということがわかってもらえたかなと思います。
+
+しかし、実際に、
+
+このインターフェースや抽象クラスや継承やらを使うにはどうしたらよいか？
+実際のプロジェクトにどのように生かしたらいいの？
+
+という悩みは、絶えずあるでしょう。
+
+実は、世の中に何千、何万とあるシステム開発の中で使われているオブジェクト指向を用いたプログラムをパターン化してまとめたものがあります。
 
 それが、**デザインパターン**と言われるものです。
+
 この分野は、次回の応用編で紹介しますので、乞うご期待！！
+
+
+気になる方は、「オブジェクト指向　デザインパターン」と検索してみましょう。
 
 
 <script>
@@ -1543,5 +1798,15 @@ function changeText(id,text,color){
     }
 
 }
+
+function picturesClickEvent(id){
+    let nextId = id == 8 ? 1 : (id+1);
+    alert(id +":"+nextId);
+    let prev = document.getElementById('pictures_'+id);
+    let next = document.getElementById('pictures_'+nextId);
+    prev.style.display = 'none';
+    next.style.display = 'block';
+}
+
 </script>
 

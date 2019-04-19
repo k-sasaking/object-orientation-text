@@ -93,7 +93,7 @@ Q2. コップを使ってできることは？
 
 　
 ■ それでは、自分の携帯電話についてそれぞれの考えてみよう。
-<img src="img/smapho.png">
+<img src="img/cup.jpg">
 
 Q1. 携帯電話に自己紹介をさせてみよう！
 
@@ -1802,7 +1802,6 @@ function changeText(id,text,color){
 
 function picturesClickEvent(id){
     let nextId = id == 8 ? 1 : (id+1);
-    alert(id +":"+nextId);
     let prev = document.getElementById('pictures_'+id);
     let next = document.getElementById('pictures_'+nextId);
     prev.style.display = 'none';

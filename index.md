@@ -3,7 +3,7 @@
 
 ##～Javaで学ぶオブジェクト指向プログラミング～ 【基礎編】
 
-
+<img src="a0001_017879.jpg"/>
 
 ### オブジェクト指向が苦手になりやすい理由
 
@@ -818,7 +818,7 @@ public class Character {
 <div id="span_5" style=";padding:5px;display:none;">
 コンストラクタは、インスタンスが生成されるときに呼び出されるメソッドなので、それがprivateになってしまうと、インスタンスが生成できなくなってしまうため...<br/>
 
-※java.util.Calendarのように、わざとインスタンスを外から作らせないようにする手法もあります。(詳しくは、講義の最後で....)<br/>
+※java.util.Calendarのように、わざとインスタンスを外から作らせないようにする手法もあります。（具体的な活用法は、応用編にて。）<br/>
 </div>
 
 #### アクセス修飾子
@@ -1280,24 +1280,51 @@ public class Main {
 Character.countCharacter
 ```
 
-動的なメンバは、同じことはできません。
+これは、「hero.item」と「heroine.item」が同じものさしているので、
+静的メンバのみこのような表記で書くことが許されています。
+
+しかし、動的なメンバは、同じことはできません。
 
 ```java
 Character.getName();//エラーになる。
 ```
 
+なぜなら、どのインスタンスのnameを取得していいかわからないですからね。
+
+
+静的メンバの余談
+
 <input id="btn_y5" type="button" onclick="getCorrect('y5')" value="余談" />
 <div id="span_y5" style=";padding:5px;display:none;">
 基本的な使われ方をするのは、クラス内に定数を定義するときは、staticをつけて静的にすることが多いです。<br/>
-理由は、インスタンスの数だけメモリを消費しないようにするためです。<br/>
 
 <pre style="background-color: #364549;color:#ffffff;">
 public static int XXXXX = 1000;
 </pre>
+
+理由は、インスタンスの数だけメモリを消費しないようにするためです。<br/>
 </div>
 
 
+staticの余談
 
+<input id="btn_y6" type="button" onclick="getCorrect('y6')" value="余談" />
+<div id="span_y6" style=";padding:5px;display:none;">
+staticといえば、
+
+<pre style="background-color: #364549;color:#ffffff;">
+public static void main(String[] args){
+
+}
+</pre>
+
+でおなじみのmain関数です。
+これも静的な関数なわけです。
+なぜなら、main関数がいくつも存在しては、実行するときどれを実行していいかわからないですよね？
+つまり、main関数は、staticである必要があります。
+このように、他に存在させたくないという時に、staticは有効なので、活用してみましょう。
+具体的な活用のやり方は、応用編にて。
+</div>
 
 
 ## 継承

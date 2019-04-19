@@ -54,29 +54,49 @@ Q2. コップを使ってできることは？
 
 Q1. 携帯電話に自己紹介をさせてみよう！
 
-<textarea crows="8" cols="50" >
-</textarea>
+<textarea rows="8" cols="50" ></textarea>
 
 Q2. 携帯電話を使ってできることは？
 
-<textarea crows="8" cols="50" >
-</textarea>
+<textarea rows="8" cols="50" ></textarea>
+
 
 
 <input id="btn_1" type="button" onclick="getCorrect(1)" value="正解を表示" />
 
 
-<div id="span_1" style="background-color: #364549;color:#ffffff;padding:15px;">
+<div id="span_1" style="color:#de4e2e;padding:5px;display:none;">
 
-Q1. 携帯電話に自己紹介をさせてみよう！
-（例）
-機種、メーカー、OS、電話番号、データ容量、契約している通信会社、メールアドレス、アプリ、電池の残量....
-
-Q2. 携帯電話を使ってできることは？
-（例）
+Q1. 携帯電話に自己紹介をさせてみよう！<br/>
+（例）<br/>
+機種、メーカー、OS、電話番号、データ容量、契約している通信会社、メールアドレス、アプリ、電池の残量....<br/>
+<br/>
+Q2. 携帯電話を使ってできることは？<br/>
+（例）<br/>
 電話をする、電話を受け取る、メールを送る、メールを受信する、アドレス帳を開く、アドレス帳に登録する、アプリを開く....
 
+<pre style="background-color: #364549;color:#ffffff;">
+public class Main {
+
+    public static void main(String[] args){
+        //heroを作りました。
+        Character hero = new Character("ヒーロー");
+
+        //キャラクターの設定
+        hero.hp_max = 100;
+        hero.hp = 100;
+        hero.attack_point = 10;
+
+        //メソッドの呼び出し
+       hero.attack(); //攻撃する。
+       hero.run_away(); //逃げる。
+       hero.call_name();//名前を名乗る
+    }  
+}
+
+</pre>
 </div>
+
 
 
 ## フィールドとメソッドとは？
@@ -116,7 +136,7 @@ public class Cup{
 
 ゲームの主人公の考えられるフィールドとメソッド....
 
-名詞
+〇フィールド
     名前
     HP
     MP
@@ -128,7 +148,7 @@ public class Cup{
    装備（鎧）
    持ってる道具
 
-動詞
+〇メソッド
     話す
     攻撃する
     逃げる
@@ -136,11 +156,19 @@ public class Cup{
     移動する
 
 
-
+　
 実際にプログラムにしてみよう。（クラスのみ）
 
 全部書くと大変なので、今回は、以下の設定で作っています。
 
+
+＜クラス＞
+
+|項目  |  入力値  |
+| :--- | :--- |
+|  名前（クラス名）  |  Character |
+
+　
 ＜フィールド＞
 
 | 型 | フィールド名 | フィールドの説明 |
@@ -150,16 +178,25 @@ public class Cup{
 | int | hp | 現在のHPの状態 |
 | int | attackPoint | 攻撃力 |
 
-
+　
 ＜メソッド＞
 
 | 戻り値の型 | 引数 | メソッド名 | メソッドの処理 |
-| :---: | :---: | :-- |
-| なし(void) | なし | attack | "攻撃"とコンソールに表示する。 |
+| :---: | :---: | :---: |:-- |
+| なし(void) | なし | attack | "攻撃する"とコンソールに表示する。 |
 |  なし(void)  | なし | runAway | "逃げる"とコンソールに表示する。 |
 
+　
 
-```java
+
+<input id="btn_2" type="button" onclick="getCorrect(2)" value="正解を表示" />
+
+
+<div id="span_2" style="color:#de4e2e;padding:5px;display:none;">
+
+正解<br/>
+
+<pre style="background-color: #364549;color:#ffffff;">
 public class Character {
 
     /*フィールド*/
@@ -178,7 +215,9 @@ public class Character {
         System.out.println("逃げる");
     }  
 }
-```
+
+</pre>
+</div>
 
 
 ## クラスとインスタンス
@@ -908,7 +947,7 @@ function changeText(id,text){
         span.style.display = 'none';
     }else{
         btn.value = '非表示';
-        span.style.display = 'inline';
+        span.style.display = 'block';
     }
 
 }

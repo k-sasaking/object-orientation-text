@@ -591,7 +591,7 @@ public class Main {
 <input id="btn_4" type="button" onclick="getCorrect(4)" value="正解を表示" />
 
 <div id="span_4" style=";padding:5px;display:none;">
-正解<Characterクラス>
+正解＜Characterクラス＞
 <pre style="background-color: #364549;color:#ffffff;">
 public class Character {
 
@@ -832,7 +832,7 @@ public class Main {
     
     public static void main(String[] args){
         //heroを作りました。
-        Character hero = new Character("ヒーロー", 100, 100, 10);
+        Character hero = new Character("ヒーロー", 100, 10);
 
         //メソッドの呼び出し
        hero.attack(); //攻撃する。
@@ -873,7 +873,7 @@ public void setName(String xxxx){
 public class Character {
 
     /*コンストラクタ*/
-    private Character(String xxx, int max, int hp, int point){
+    private Character(String xxx, int hp, int point){
         this.name = xxx;
         this.hp = hp;
         this.attackPoint = point;
@@ -908,9 +908,19 @@ public class Character {
 
 これで、カプセル化されている値にどうしてもアクセスしたいときは、このようにアクセスすれば大丈夫です。
 
-GetterとSetterを作ることで例えば、仮に、名前は取得はできるけど、変更できないようにしたい！のであれば、Setterのメソッドを消せば、大丈夫です。（逆もしかり）
+### GetterとSetterのメリット
+例えば、**read only**のように、読み込みのみを許可したい場合は、
+Getterのみを定義すればOK！
 
-また、値を取得したり設定するときに、値を入れていいものかどうかもこのGetterやSetterでプログラムを書くことで、設定することができます。
+逆に、**write only**のように、書き込みのみを許可したい場合は、
+Setter飲みを定義すればOK!
+
+とても便利です。
+
+
+また、値を取得・設定する際に、その値を本当に取得・設定してもいいのかをGeeterやSetterのメソッド内に書くことで、
+変なデータを作らないようにすることができます。
+
 例えば...下記のプログラムでは、setNameで「スライム」をしようとしたときに、名前を変更されないように防ぐことができます。
 
 ```java
@@ -923,8 +933,82 @@ public void setName(String xxxx){
 }
 ```
 
-### ワーク6: それでは、他のGetterとSetterを作ってみましょう。
+### ワーク6: GetterとSetterを作ってみよう。
 
+それでは、hpとattackPointのGetterとSetterを作ってみましょう。
+
+
+<input id="btn_1" type="button" onclick="getCorrect(1)" value="正解を表示" />
+
+
+<div id="span_1" style=";padding:5px;display:none;">
+正解<br/>
+★が追加したコード
+<pre style="background-color: #364549;color:#ffffff;">
+public class Character {
+
+    /*コンストラクタ*/
+    private Character(String xxx, int hp, int point){
+        this.name = xxx;
+        this.hp = hp;
+        this.attackPoint = point;
+    }
+    /*フィールド*/
+    private String name; //キャラクターの名前
+    private int hp; //現在のHPの状態
+    private int attackPoint; //攻撃力
+
+    /*フィールド*/
+    //攻撃する
+    public void attack(){
+        System.out.println("攻撃");
+    }
+    //逃げる
+    public void runAway(){
+        System.out.println("逃げる");
+    }
+
+    /*GetterとSetter*/
+    // nameのGetter
+    public String getName(){
+        return this.name;
+    }
+
+    // nameのSetter
+    public void setName(String xxxx){
+        this.name = xxxx;
+    }
+     
+    // hpのGetter
+    public int getHp(){
+        return this.hp;
+    }
+    // hpのSetter
+    public void setHp(int hp){
+        this.hp = hp;
+    }
+
+    // attackPointのGetter
+    public int getAttackPoint(){
+        return this.attackPoint;
+    }
+    // hpのSetter
+    public void setAttackPoint(int attackPoint){
+        this.attackPoint = attackPoint;
+    }
+}
+</pre>
+
+と書いてもらいましたけど....<br/>
+実は、Eclipseには、ショートカットキーがあるの知っていましたか？<br/>
+<br/>
+Windowsの場合は、「Shift」+「Alt」+「s」<br/>
+Macの場合は、「Command」+「Alt」+「s」<br/>
+<br/>
+これを押して、「getterとsetterの追加」を選択。<br/>
+追加したいフィールドに☑すればOK！<br/>
+
+</div>
 
 
 

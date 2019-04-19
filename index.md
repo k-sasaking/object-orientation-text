@@ -209,7 +209,7 @@ public class Character {
     int hp; //現在のHPの状態
     int attackPoint; //攻撃力
 
-    /*フィールド*/
+    /*メソッド*/
     //攻撃する
     void attack(){
         System.out.println("攻撃");
@@ -433,7 +433,7 @@ public class Character {
     int hp; //現在のHPの状態
     int attackPoint; //攻撃力
 
-    /*フィールド*/
+    /*メソッド*/
     //攻撃する
     void attack(){
         System.out.println("攻撃");
@@ -540,7 +540,7 @@ public class Character {
     int hp; //現在のHPの状態
     int attackPoint; //攻撃力
 
-    /*フィールド*/
+    /*メソッド*/
     //攻撃する
     void attack(){
         System.out.println("攻撃");
@@ -548,7 +548,11 @@ public class Character {
     //逃げる
     void runAway(){
         System.out.println("逃げる");
-    }  
+    }
+    //自分の名前を名乗る
+    void callName(){
+        System.out.println("私の名前は、"+this.name+"だ！");
+    }    
 }
 ```
 
@@ -606,7 +610,7 @@ public class Character {
     int hp; //現在のHPの状態
     int attackPoint; //攻撃力
 
-    /*フィールド*/
+    /*メソッド*/
     //攻撃する
     void attack(){
         System.out.println("攻撃");
@@ -614,7 +618,11 @@ public class Character {
     //逃げる
     void runAway(){
         System.out.println("逃げる");
-    }  
+    }
+    //自分の名前を名乗る
+    void callName(){
+        System.out.println("私の名前は、"+this.name+"だ！");
+    }    
 }
 </pre>
 
@@ -746,7 +754,7 @@ public class Character {
     private int hp; //現在のHPの状態
     private int attackPoint; //攻撃力
 
-    /*フィールド*/
+    /*メソッド*/
     //攻撃する
     public void attack(){
         System.out.println("攻撃");
@@ -754,7 +762,11 @@ public class Character {
     //逃げる
     public void runAway(){
         System.out.println("逃げる");
-    }  
+    }
+    //自分の名前を名乗る
+    void callName(){
+        System.out.println("私の名前は、"+this.name+"だ！");
+    }    
 }
 ```
 
@@ -777,12 +789,12 @@ public class Character {
     private Character(String xxx){
         this.name = xxx;
     }
-    /*フィールド*/
+    /*メソッド*/
     private String name; //キャラクターの名前
     private int hp; //現在のHPの状態
     private int attackPoint; //攻撃力
 
-    /*フィールド*/
+    /*メソッド*/
     //攻撃する
     public void attack(){
         System.out.println("攻撃");
@@ -790,7 +802,11 @@ public class Character {
     //逃げる
     public void runAway(){
         System.out.println("逃げる");
-    }  
+    }
+    //自分の名前を名乗る
+    void callName(){
+        System.out.println("私の名前は、"+this.name+"だ！");
+    }    
 }
 ```
 
@@ -883,7 +899,7 @@ public class Character {
     private int hp; //現在のHPの状態
     private int attackPoint; //攻撃力
 
-    /*フィールド*/
+    /*メソッド*/
     //攻撃する
     public void attack(){
         System.out.println("攻撃");
@@ -892,6 +908,10 @@ public class Character {
     public void runAway(){
         System.out.println("逃げる");
     }
+    //自分の名前を名乗る
+    void callName(){
+        System.out.println("私の名前は、"+this.name+"だ！");
+    }  
 
     /*GetterとSetter*/
     // nameのGetter
@@ -938,17 +958,17 @@ public void setName(String xxxx){
 それでは、hpとattackPointのGetterとSetterを作ってみましょう。
 
 
-<input id="btn_1" type="button" onclick="getCorrect(1)" value="正解を表示" />
+<input id="btn_6" type="button" onclick="getCorrect(6)" value="正解を表示" />
 
 
-<div id="span_1" style=";padding:5px;display:none;">
+<div id="span_6" style=";padding:5px;display:none;">
 正解<br/>
 ★が追加したコード
 <pre style="background-color: #364549;color:#ffffff;">
 public class Character {
 
     /*コンストラクタ*/
-    private Character(String xxx, int hp, int point){
+    public Character(String xxx, int hp, int point){
         this.name = xxx;
         this.hp = hp;
         this.attackPoint = point;
@@ -958,7 +978,7 @@ public class Character {
     private int hp; //現在のHPの状態
     private int attackPoint; //攻撃力
 
-    /*フィールド*/
+    /*メソッド*/
     //攻撃する
     public void attack(){
         System.out.println("攻撃");
@@ -967,6 +987,10 @@ public class Character {
     public void runAway(){
         System.out.println("逃げる");
     }
+    //自分の名前を名乗る
+    void callName(){
+        System.out.println("私の名前は、"+this.name+"だ！");
+    }  
 
     /*GetterとSetter*/
     // nameのGetter
@@ -992,7 +1016,7 @@ public class Character {
     public int getAttackPoint(){
         return this.attackPoint;
     }
-    // hpのSetter
+    // attackPointのSetter
     public void setAttackPoint(int attackPoint){
         this.attackPoint = attackPoint;
     }
@@ -1014,7 +1038,266 @@ Macの場合は、「Command」+「Alt」+「s」<br/>
 
 
 ## 静的メンバ
-＜今回は省きます。＞
+＜時間に余裕があれば..やります！＞
+
+### メンバとは？
+上記でやったように、クラスの中に定義されているものを指します。
+つまり、メソッドやフィールドのことを指します。
+
+### 静的とは？
+静的の対義語で、動的という言葉がります。
+
+このように、
+**静的**とは、動かないもの。変化しないもの。
+**動的**とは、動くもの。変化するもの。
+というものが一般的イメージです。
+
+Javaの**静的**は、**メモリを固定する**という意味を持ちます。
+
+オブジェクト指向プログラミングの**静的**のイメージは、**共有部分**と**唯一無二の値**という2つの側面を持つイメージを作ることができます。
+
+オブジェクト指向プロラミングの本質は、クラスというモノの概念の型から、インスタンスという実態を作ることでした。
+例えば、インスタンスは、クラスからインスタンス化されたときに、メモリ上に作られるので、インスタンスは**動的**なものです。
+また、インスタンス内のフィールドやメソッドも当然**動的**なわけです。
+
+しかし、静的なメンバをクラスの中に定義することで、メモリを固定することができるので、どのインスタンスを作っても、メモリが固定されているため、**共有**で扱うことができるメモリを作ることができます。また、どんなにインスタンスを作っても静的なものは、新しく作られることがないので、**唯一無二**であるといえるでしょう。
+
+
+と言ってもわからないと思うので、実際に実験してみましょう。
+
+前回作ったCharacterクラスに、静的なメンバを追加します。
+静的なメンバは、**static**をつければ、OKです！
+
+例えば...
+
+```java
+private static String item;
+```
+
+みたいな感じです。
+これで、String型のitemというメモリは、どのインスタンスでも共有できる値となるわけです。
+
+実際に実験してみましょう。
+★が追加したところです。
+
+＜Characterクラス＞
+
+```java
+public class Character {
+
+	/*コンストラクタ*/
+    public Character(String xxx, int hp, int point){
+        this.name = xxx;
+        this.hp = hp;
+        this.attackPoint = point;
+    }
+    
+    /*静的なメンバ*/
+    public static String item;//★
+
+    /*フィールド*/
+    private String name; //キャラクターの名前
+    private int hp; //現在のHPの状態
+    private int attackPoint; //攻撃力
+
+    /*メソッド*/
+    //攻撃する
+    public void attack(){
+        System.out.println("攻撃");
+    }
+    //逃げる
+    public void runAway(){
+        System.out.println("逃げる");
+    }
+    //自分の名前を名乗る
+    void callName(){
+        System.out.println("私の名前は、"+this.name+"だ！");
+    }  
+    /*GetterとSetter*/
+    // nameのGetter
+    public String getName(){
+        return this.name;
+    }
+
+    // nameのSetter
+    public void setName(String xxxx){
+        this.name = xxxx;
+    }
+     
+    // hpのGetter
+    public int getHp(){
+        return this.hp;
+    }
+    // hpのSetter
+    public void setHp(int hp){
+        this.hp = hp;
+    }
+
+    // attackPointのGetter
+    public int getAttackPoint(){
+        return this.attackPoint;
+    }
+    // attackPointのSetter
+    public void setAttackPoint(int attackPoint){
+        this.attackPoint = attackPoint;
+    }
+}
+```
+
+これで、静的なメンバを定義しました。
+
+実際に、この静的なメンバをMainクラスで使ってみましょう。
+
+今回は、わかりやすいように、ヒーローとヒロインを設定します。
+ヒーローが「剣」を手に入れて、ヒロインが「魔法の書物」を手に入れた時、
+プログラムの動きを見てみましょう。
+
+＜Mainクラス＞
+
+```java
+public class Main {
+
+	public static void main(String[] args) {
+
+		//キャラクターを作りました。
+        Character hero = new Character("ヒーロー", 100,  10);
+        Character heroine = new Character("ヒロイン", 40,  10);
+
+       hero.callName();//名前を名乗る
+       heroine.callName();//名前を名乗る
+       
+       System.out.println("#ヒーローは、剣を手に入れた");
+       hero.item = "剣";
+       
+       System.out.println("ヒーローのアイテム："+hero.item);
+       System.out.println("ヒロインのアイテム："+heroine.item);
+       
+       System.out.println("#ヒロインは、魔法の書物を手に入れた");
+       heroine.item = "魔法の書物";
+       
+       System.out.println("ヒーローのアイテム："+hero.item);
+       System.out.println("ヒロインのアイテム："+heroine.item);
+       
+	}
+
+}
+```
+
+プログラムを実行してみましょう。
+下のような結果になったかと思います。
+
+```
+私の名前は、ヒーローだ！
+私の名前は、ヒロインだ！
+#ヒーローは、剣を手に入れた
+ヒーローのアイテム：剣
+ヒロインのアイテム：剣
+#ヒロインは、魔法の書物を手に入れた
+ヒーローのアイテム：魔法の書物
+ヒロインのアイテム：魔法の書物
+```
+
+ヒーローが「剣」を手に入れたはずなので、ヒロインも「剣」を持っています。
+また、ヒロインが「魔法の書物」を手に入れたはずなのに、ヒーローも「魔法の書物」を持っています。
+
+このように、staticで宣言したメンバは、メモリが共有されており、唯一無二の値になるので、インスタンスAで変更した結果が、
+インスタンスBやインスタンスCにも影響します。
+
+例えば、Characterクラスにて、★のように静的なメンバを追加します。
+また、コンストラクタが呼び出されるたびに、+1ずつすると、インスタンスがいくつできたかを数えることができます。
+
+```java
+public class Character {
+
+	/*コンストラクタ*/
+	public Character(String xxx, int hp, int point){
+	    this.name = xxx;
+	    this.hp = hp;
+	    this.attackPoint = point;
+	    countCharacter++;//★
+	}
+	    
+	/*静的なメンバ*/
+	public static String item;
+	public static int countCharacter;//★
+
+	/*フィールド*/
+	private String name; //キャラクターの名前
+	private int hp; //現在のHPの状態
+	private int attackPoint; //攻撃力
+
+    /*********************
+          以下省略
+    **********************/
+}
+```
+
+countCharacterの値を先ほどのMainクラスで出力してみましょう。
+★が追加したプログラムです。
+
+```java
+public class Main {
+
+	public static void main(String[] args) {
+
+		//キャラクターを作りました。
+        Character hero = new Character("ヒーロー", 100,  10);
+        Character heroine = new Character("ヒロイン", 40,  10);
+
+       hero.callName();//名前を名乗る
+       heroine.callName();//名前を名乗る
+       
+       System.out.println("#ヒーローは、剣を手に入れた");
+       hero.item = "剣";
+       
+       System.out.println("ヒーローのアイテム："+hero.item);
+       System.out.println("ヒロインのアイテム："+heroine.item);
+       
+       System.out.println("#ヒロインは、魔法の書物を手に入れた");
+       heroine.item = "魔法の書物";
+       
+       System.out.println("ヒーローのアイテム："+hero.item);
+       System.out.println("ヒロインのアイテム："+heroine.item);
+       System.out.println("キャラクター数："+Character.countCharacter);//★
+       
+	}
+
+}
+```
+
+プログラムの実行結果を見ると、キャラクター数が2と表示されています。
+このように、共有メモリがあることで、とても便利に扱うことができます。
+
+また、静的なメンバに限り、というように呼び出すことができます。
+
+```java
+クラス名.静的なメンバ
+```
+
+上のプログラムでも下のように呼び出されています。
+
+```java
+Character.countCharacter
+```
+
+動的なメンバは、同じことはできません。
+
+```java
+Character.getName();//エラーになる。
+```
+
+<input id="btn_y5" type="button" onclick="getCorrect('y5')" value="余談" />
+<div id="span_y5" style=";padding:5px;display:none;">
+基本的な使われ方をするのは、クラス内に定数を定義するときは、staticをつけて静的にすることが多いです。<br/>
+理由は、インスタンスの数だけメモリを消費しないようにするためです。<br/>
+
+<pre style="background-color: #364549;color:#ffffff;">
+public static int XXXXX = 1000;
+</pre>
+</div>
+
+
+
 
 
 ## 継承
@@ -1059,7 +1342,7 @@ public class MagicCharacter {
     private int mp; //現在のMPの状態★
     private int attackPoint; //攻撃力
 
-    /*フィールド*/
+    /*メソッド*/
     //攻撃する
     public void attack(){
         System.out.println("攻撃");
@@ -1068,6 +1351,10 @@ public class MagicCharacter {
     public void runAway(){
         System.out.println("逃げる");
     }
+    //自分の名前を名乗る
+    void callName(){
+        System.out.println("私の名前は、"+this.name+"だ！");
+    }  
 
     /*GetterとSetter*/
     // nameのGetter
@@ -1207,8 +1494,8 @@ function getCorrect(id){
 function moreQuestion(id){
     changeText(id,'挑戦!',"#228822");
 }
-function moreTime(id){
-    changeText(id,'時間があればやります。',"#99e299");
+function getNone(id){
+    changeText(id,'表示',"#334433");
 }
 function getReference(id){
     changeText(id,'参考','#228822');

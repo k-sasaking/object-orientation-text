@@ -1600,6 +1600,7 @@ public class MagicCharacter {
 <br/>
 例えば、どのキャラクターにも必要な設定を**BasicCharacterクラス**を作ってまとめておき、そのクラスを**継承**して、「勇者クラス」「魔法使いクラス」「盗賊クラス」「格闘家クラス」....などを作っていけばよいのです。
 
+
 <!--ここに図解-->
 
 試しに、**BasicCharacter**クラスを作成し、それを継承する勇者キャラクタークラス(**HeroCharacter**)と魔法使いキャラクタークラス(**MagicianCharacter**)を作成します。<br/>
@@ -1607,9 +1608,20 @@ public class MagicCharacter {
 
 以前、作成したCharacterクラスを少し機能を削って作ります。
 
+
+
 ※今まで使っていたCharacterクラスはもう使いません。
 
+
+
+
 ＜BasicCharacter＞
+
+
+|項目  |  入力値  |
+| :--- | :--- |
+|  名前（クラス名）  |  BasicCharacter |
+
 
 ```java
 public class BasicCharacter {
@@ -1662,6 +1674,11 @@ public class BasicCharacter {
 ＜HeroCharacter＞
 
 
+|項目  |  入力値  |
+| :--- | :--- |
+|  名前（クラス名）  |  HeroCharacter |
+
+
 ```java
 public class HeroCharacter extends BasicCharacter {
 
@@ -1674,7 +1691,7 @@ public class HeroCharacter extends BasicCharacter {
     //攻撃する
     @Override
     public void attack(){
-        System.out.println("剣で攻撃");
+        System.out.println(this.getName()+"の剣で攻撃");
     }
 
 }
@@ -1801,11 +1818,11 @@ public class MagicianCharacter extends BasicCharacter {
     //攻撃する
     @Override
     public void attack(){
-        System.out.println("杖で攻撃");
+        System.out.println(this.getName()+"の杖で攻撃");
     }
     //魔法を使う
     public void magic(){
-        System.out.println("魔法を使用");
+        System.out.println(this.getName()+"が魔法を使った");
     }
 }
 </pre>
@@ -1824,7 +1841,7 @@ public class MagicianCharacter extends BasicCharacter {
 単純化とは、すなわち、物事を**抽象的**にすることです。
 
 
-### 抽象クラス
+## 抽象クラス
 
 例えば、先ほど作成したクラスの中に、攻撃をするメソッドがあります。
 
@@ -1979,7 +1996,7 @@ BasicCharavter basicCharacter = new BasicCharacter("hoge", 100, 100);
 
 
 
-### インターフェース
+## インターフェース
 いよいよ、最後の**インターフェース**です。
 
 最後にまた新しい単語....と思った方も多いはず。
@@ -2002,10 +2019,22 @@ BasicCharavter basicCharacter = new BasicCharacter("hoge", 100, 100);
 基本的には、抽象クラスと同じように、「最低限の取り決めだけを決める」ためのものです。
 
 <br/>
+
+例えば、テレビのリモコンのボタンを押したら、テレビがつきます。
+
+別にテレビを操作するだけなら、リモコンの中身がどんな仕組みでできているのかは、関係ありません。
+
+リモコンのボタンを押すと、テレビがつくということが重要なのです。
+
+このように、概念を単純化していく考えこそが、インターフェースです。
+
+<br/>
 　
-例えば、先ほど作成したキャラクターが戦うとき、「バトル」という側面を見れば、「攻撃する」「逃げる」「アイテムを使う」などの最低限の機能があれば、どんなキャラクターでも戦うことができます。　
-　
-このように、最低限のものを揃えることを定義するときに、インターフェースが使われることがあります。
+同じように、先ほど作成したキャラクターが戦うとき、「**バトル**」という側面を見れば、「攻撃する」「逃げる」「アイテムを使う」などの最低限の機能があれば、どんなものであろうと、バトルはできます。
+
+<!--ここに図解-->
+
+このように、あることをするのに最低限のものを揃えることを定義するときに、インターフェースを使います。
 
 
 それでは、バトルインターフェースを作成しましょう。
@@ -2074,9 +2103,161 @@ abstract void attack(); //攻撃する
 今回は、BasicCharacterに「戦う」機能をつけたいと思い、BasicCharacterクラスに、「Battler」インターフェースを実装してもらいましょう。
 
 
+```java
+public abstract class BasicCharacter implements Battle {//★
+
+	/*コンストラクタ*/
+    public BasicCharacter(String xxx, int hp, int point){
+        this.name = xxx;
+        this.hp = hp;
+        this.attackPoint = point;
+    }
+ 
+    /*フィールド*/
+    protected String name; //キャラクターの名前
+    private int hp; //現在のHPの状態
+    private int attackPoint; //攻撃力
+
+    /* 抽象メソッド */
+    public abstract void attack(); 
+  
+    /*メソッド*/
+    //逃げる
+    public void runAway(){
+        System.out.println("逃げる");
+    }
+
+    /*GetterとSetter*/
+    // nameのGetter
+    public String getName(){
+        return this.name;
+    }
+
+    // hpのGetter
+    public int getHp(){
+        return this.hp;
+    }
+    // hpのSetter
+    public void setHp(int hp){
+        this.hp = hp;
+    }
+
+    // attackPointのGetter
+    public int getAttackPoint(){
+        return this.attackPoint;
+    }
+}
+```
+
+すると、**HeroCharacter**クラスと**MagicianCharacter**クラスのそれぞれで、**userItem**メソッドが定義されていないので、
+「戦うことができません。」とコンパイルエラーで怒られます。
+
+<!--今のクラス図を見ると、以下のようになります。-->
+
+<!--ここに図解-->
+
+よって、二つのクラスに、以下のコードを追加します。
+
+```java
+//アイテムを使う。
+@Override
+public void useItem(String item) {
+    System.out.println(this.getName()+"は、"+item+"を使った");
+}
+```
 
 
+実際に追加してみましょう。
 
+＜HeroCharacter＞
+
+
+```java
+public class HeroCharacter extends BasicCharacter {
+
+	/*コンストラクタ*/
+    public HeroCharacter(String xxx, int hp, int point){
+        super(xxx,hp,point);
+    }
+
+    /*メソッド*/
+    //攻撃する
+    @Override
+    public void attack(){
+        System.out.println("剣で攻撃");
+    }
+    //アイテムを使う。★
+	@Override
+	public void useItem(String item) {
+        System.out.println(this.getName()+"は、"+item+"を使った");
+	}
+
+}
+```
+
+
+＜MagicianeCharacter＞
+
+
+```java
+public class MagicianCharacter extends BasicCharacter {
+
+	/*コンストラクタ*/
+    public MagicianCharacter(String xxx, int hp, int mp, int point){
+        super(xxx,hp,point);
+        this.mp = mp;
+    }
+
+    /*フィールド*/
+    private int mp;
+    /*メソッド*/
+    //攻撃する
+    @Override
+    public void attack(){
+        System.out.println("杖で攻撃");
+    }
+    //魔法を使う
+    public void magic(){
+        System.out.println("魔法を使用");
+    }
+    //アイテムを使う。★
+	@Override
+	public void useItem(String item) {
+        System.out.println(this.getName()+"は、"+item+"を使った");
+	}
+
+}
+```
+
+
+これに伴って、Mainクラスも変えてみましょう。
+
+```java
+public class Main {
+
+	public static void main(String[] args) {
+
+		//キャラクターを作りました。
+	    HeroCharacter hero = new HeroCharacter("ヒーロー", 100,  10);
+	    MagicianCharacter magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+	    
+	    //バトル開始
+	    System.out.println("##########バトル開始！##########");
+	    
+	    //攻撃
+	    hero.attack();
+	    magician.attack();
+
+	    //アイテム
+	    hero.useItem("やくそう");
+	    magician.useItem("どくけしそう");
+	    
+	}
+
+}
+```
+
+実行すると、実際にバトルをしているようなプログラムができました。
 
 
 #### インターフェースと抽象クラスの違い
@@ -2098,12 +2279,234 @@ abstract void attack(); //攻撃する
 
 
 ##### インターフェースの得意分野・不得意分野
+
 ○得意
+
 多重継承ができる。「親:子」は、「多:多」になってもよい。
+
 抽象的なメソッドを定義できる
 
+<br/>
 ○不得意
+
 具体的なメソッドを定義できない
+
+
+
+#### ワーク8　インターフェースと抽象クラスを使って、敵を作ろう
+
+それでは、敵を作って、戦わせましょう。
+
+
+Mainクラスを以下のように、設定します。
+
+＜Mainクラス＞
+
+
+```java
+public class Main {
+
+	public static void main(String[] args) {
+
+		//キャラクターを作りました。
+	    HeroCharacter hero = new HeroCharacter("ヒーロー", 100,  10);
+	    MagicianCharacter magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+	    
+	    //敵を作りました。
+	    Slime s = new Slime("スライム1", 10,  1);
+
+	    //バトル開始
+	    System.out.println("##########バトル開始！##########");
+	    
+	    //攻撃
+	    hero.attack();
+	    magician.attack();
+
+	    //敵の攻撃
+	    s.attack();
+	    
+	    //アイテム
+	    hero.useItem("やくそう");
+	    
+	    //攻撃
+	    hero.attack();
+	    magician.attack();
+
+        //バトル終了
+	    System.out.println("##########バトル終了##########");
+
+	}
+
+}
+```
+
+上のMainクラスで動くように、BasicEnemyクラスとSlimeクラスを下記の条件で作成しましょう。
+
+＜BasicEnemyクラス＞
+
+下記の内容に、Battleインターフェースを実装してください。
+
+```java
+public abstract class BasicEnemy {
+
+	public BasicEnemy(String xxx, int hp, int point){
+        this.name = xxx;
+        this.hp = hp;
+        this.attackPoint = point;
+    }
+	
+    /*フィールド*/
+    protected String name; //キャラクターの名前
+    private int hp; //現在のHPの状態
+    private int attackPoint; //攻撃力
+
+    /* 抽象メソッド */
+    //攻撃する
+    public abstract void attack(); //★
+    
+    /*メソッド*/
+    //逃げる
+    public void runAway(){
+        System.out.println("敵は逃げた");
+    }
+
+    /*GetterとSetter*/
+    // nameのGetter
+    public String getName(){
+        return this.name;
+    }
+
+    // hpのGetter
+    public int getHp(){
+        return this.hp;
+    }
+    // hpのSetter
+    public void setHp(int hp){
+        this.hp = hp;
+    }
+
+    // attackPointのGetter
+    public int getAttackPoint(){
+        return this.attackPoint;
+    }
+}
+```
+
+
+
+
+＜Slimeクラス＞
+
+|項目  |  入力値  |
+| :--- | :--- |
+|  名前（クラス名）  |  Slime |
+|  継承  |  BasicEnemyクラスを継承 |
+
+　
+＜Slimeクラスのフィールド＞
+
+※BasicEnemyクラスから継承
+　
+＜Slimeクラスのメソッド＞
+
+| 項目 | メソッド名 | メソッドの処理 |
+| :---: | :---: | :---: |:-- |
+| コンストラクタ | Slime | 親クラスのコンストラクタの呼び出し。「野生のスライムが現れた」とコンソールに表示。 |
+|  BattleインターフェースのuserItemメソッドを実装 | userItem | 「(自分の名前)は、アイテムを使おうとしたが、持っていなかった。」とコンソールに表示。 |
+|  BattleインターフェースのuserItemメソッドを実装 | 「(自分の名前)の攻撃」とコンソールに表示。 |
+
+
+<input id="btn_8" type="button" onclick="getCorrect(8)" value="正解を表示" />
+
+<div id="span_8" style=";padding:5px;display:none;">
+正解<br/>
+＜BasicEnemy＞
+
+★が追加
+<pre style="background-color: #364549;color:#ffffff;">
+public abstract class BasicEnemy implements Battle{
+
+	public BasicEnemy(String xxx, int hp, int point){
+        this.name = xxx;
+        this.hp = hp;
+        this.attackPoint = point;
+    }
+	
+    /*フィールド*/
+    protected String name; //キャラクターの名前
+    private int hp; //現在のHPの状態
+    private int attackPoint; //攻撃力
+
+    /* 抽象メソッド */
+    //攻撃する
+    public abstract void attack(); //★
+    
+    /*メソッド*/
+    //逃げる
+    public void runAway(){
+        System.out.println("敵は逃げた");
+    }
+
+    /*GetterとSetter*/
+    // nameのGetter
+    public String getName(){
+        return this.name;
+    }
+
+    // hpのGetter
+    public int getHp(){
+        return this.hp;
+    }
+    // hpのSetter
+    public void setHp(int hp){
+        this.hp = hp;
+    }
+
+    // attackPointのGetter
+    public int getAttackPoint(){
+        return this.attackPoint;
+    }
+}
+</pre>
+
+
+＜Silmeクラス＞
+<pre style="background-color: #364549;color:#ffffff;">
+public class Slime extends BasicEnemy {
+
+	public Slime(String xxx, int hp, int point){
+        super(xxx,hp,point);
+        System.out.println("野生のスライムが現れた");
+    }
+	
+	@Override
+	public void useItem(String item) {
+		System.out.println(this.getName()+"は、アイテムを使おうとしたが、持っていなかった。");
+	}
+
+	@Override
+	public void attack() {
+        System.out.println(this.getName()+"の攻撃");
+	}
+}
+</pre>
+
+
+</div>
+
+
+以上で、基本的なオブジェクト指向の講座は、終了です。
+
+
+更に、深めたい人は、
+
+
+実際に、上記のプログラムを改変して、「攻撃をしたときに、相手の攻撃力分HPを削る」ようにしたり、コマンドラインからン入力したコマンドに沿って、プログラムを操作できるようにするのも面白いかと思います。
+
+
+いずれにせよ、オブジェクト指向って意外と単純なものなんだなと知ってもらえたら、なによりです。
+
+
 
 
 ## デザインパターンの紹介

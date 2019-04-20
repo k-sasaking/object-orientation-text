@@ -2424,7 +2424,7 @@ public abstract class BasicEnemy {
 
 ★が追加
 <pre style="background-color: #364549;color:#ffffff;">
-public abstract class BasicEnemy implements Battle{
+public abstract class BasicEnemy implements Battle{ //★
 
 	public BasicEnemy(String xxx, int hp, int point){
         this.name = xxx;

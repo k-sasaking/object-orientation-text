@@ -2419,7 +2419,7 @@ public abstract class BasicEnemy {
 | :---: | :---: | :---: |:-- |
 | コンストラクタ | Slime | 親クラスのコンストラクタの呼び出し。「野生のスライムが現れた」とコンソールに表示。 |
 |  BattleインターフェースのuserItemメソッドを実装 | userItem | 「(自分の名前)は、アイテムを使おうとしたが、持っていなかった。」とコンソールに表示。 |
-|  BattleインターフェースのuserItemメソッドを実装 | 「(自分の名前)の攻撃」とコンソールに表示。 |
+|  Battleインターフェースのattckメソッドを実装 | attack |「(自分の名前)の攻撃」とコンソールに表示。 |
 
 
 <input id="btn_8" type="button" onclick="getCorrect(8)" value="正解を表示" />
@@ -2541,7 +2541,7 @@ public class Slime extends BasicEnemy {
 ### アンケートにご協力ください。
 最後に、アンケートにご協力をお願いします。
 
-https://forms.gle/hgN6C9mKW4qPGmWf9
+<a href="https://forms.gle/hgN6C9mKW4qPGmWf9">https://forms.gle/hgN6C9mKW4qPGmWf9</a>
 
 上のURLに入れない方は、紙のアンケートにお願いします。
 

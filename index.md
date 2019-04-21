@@ -167,7 +167,8 @@ public class Cup{
 
 ### ワーク2：ゲームの主人公を作ろう！
 
-<!-- ここに主人公画像 -->
+<img src="img/hero.jpg"/>
+
 
 ゲームの主人公の考えられるフィールドとメソッド....
 
@@ -1487,6 +1488,9 @@ public static void main(String[] args){
 前章では、Characterクラスを作りましたが、ほとんど同じ設定内容だけど、一部だけ特徴的を持たせたキャラクターを作りたい！というときに、**継承**はとても便利です。<br/>
 今回は、魔法を使えるキャラクター「魔法使い」を作ってみましょう。<br/>
 
+<img src="img/magician.jpg"/>
+
+
 <br/>
 魔法使いには、以下のフィールドとメソッドがあります。
 
@@ -1601,7 +1605,7 @@ public class MagicCharacter {
 例えば、どのキャラクターにも必要な設定を**BasicCharacterクラス**を作ってまとめておき、そのクラスを**継承**して、「勇者クラス」「魔法使いクラス」「盗賊クラス」「格闘家クラス」....などを作っていけばよいのです。
 
 
-<!--ここに図解-->
+<img src="img/characters.jpg"/>
 
 試しに、**BasicCharacter**クラスを作成し、それを継承する勇者キャラクタークラス(**HeroCharacter**)と魔法使いキャラクタークラス(**MagicianCharacter**)を作成します。<br/>
 <br/>
@@ -2297,6 +2301,8 @@ public class Main {
 
 それでは、敵を作って、戦わせましょう。
 
+<img src="img/slime.jpg"/>
+
 
 Mainクラスを以下のように、設定します。
 
@@ -2509,6 +2515,7 @@ public class Slime extends BasicEnemy {
 
 
 
+
 ## デザインパターンの紹介
 今回学んだオブジェクト指向の概念を理解し、基礎を学ぶものでした。
 
@@ -2529,6 +2536,14 @@ public class Slime extends BasicEnemy {
 
 
 気になる方は、「オブジェクト指向　デザインパターン」と検索してみましょう。
+
+
+### アンケートにご協力ください。
+最後に、アンケートにご協力をお願いします。
+
+https://forms.gle/hgN6C9mKW4qPGmWf9
+
+上のURLに入れない方は、紙のアンケートにお願いします。
 
 
 <script>

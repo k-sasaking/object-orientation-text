@@ -40,11 +40,17 @@
 
 **オブジェクト指向プログラミング**
 
-下記のWikipediaを見てもらえれば、すべてがわかります..。
+
+下記のWikipediaを見てもらえれば、すべてわかりますので、見てみましょう。
+
 
 <a href="javascript:alert('冗談です。');">https\://ja.wikipedia.org/wiki/オブジェクト指向プログラミング</a>
 
 
+
+　
+　
+　
 
 ## そもそもオブジェクトってなに？
 
@@ -90,12 +96,18 @@ Q1. コップの自己紹介を作ってみよう。
 - **水の入る量**は〇〇です。
 - **今水が入ってる量**は〇〇です。
 
+
+※「重さ」「素材」「色」..という項目を挙げることが大事です。
+
+
 Q2. コップを使ってできることは？
 - **水を入れる**
 - **水を捨てる**
 
+
+※主体はあくまでコップであることに注意しましょう。
 　
-### それでは、自分の携帯電話についてそれぞれの考えてみよう。
+### それでは、自分の携帯電話についてそれぞれ考えてみよう。【90秒で何個あげられるかチャレンジ】
 <img src="img/smapho.png">
 
 Q1. 携帯電話に自己紹介をさせてみよう！
@@ -2476,7 +2488,7 @@ public abstract class BasicEnemy implements Battle{ //★
 </pre>
 
 
-＜Silmeクラス＞
+＜Slimeクラス＞
 <pre style="background-color: #364549;color:#ffffff;">
 public class Slime extends BasicEnemy {
 
@@ -2541,7 +2553,7 @@ public class Slime extends BasicEnemy {
 ### アンケートにご協力ください。
 最後に、アンケートにご協力をお願いします。
 
-<a href="https://forms.gle/hgN6C9mKW4qPGmWf9">https://forms.gle/hgN6C9mKW4qPGmWf9</a>
+<a href="https://forms.gle/6JK8DxEkVFzHx5V16">https://forms.gle/6JK8DxEkVFzHx5V16</a>
 
 上のURLに入れない方は、紙のアンケートにお願いします。
 

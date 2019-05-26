@@ -1806,7 +1806,7 @@ public class Main {
 	    //攻撃
 	    hero.attack();
 	    magician.attack();
-       
+
 	}
 
 }
@@ -2286,8 +2286,8 @@ public class Main {
 	public static void main(String[] args) {
 
 		//キャラクターを作りました。
-	    Battle hero = new HeroCharacter("ヒーロー", 100,  10);
-	    Battle magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+	    HeroCharacter hero = new HeroCharacter("ヒーロー", 100,  10);
+	    MagicianCharacter magician = new MagicianCharacter("マジシャン", 50, 100, 3);
 	    
 	    //バトル開始
 	    System.out.println("##########バトル開始！##########");
@@ -2340,65 +2340,6 @@ public class Main {
 具体的なメソッドを定義できない
 
 
-
-#### インターフェースや抽象クラスの利用価値（ポリモーフィズム）
-
-
-インターフェースや抽象クラスのもっとも利用価値のある部分は、下のコードです。
-
-
-```java
-Battle hero = new HeroCharacter("ヒーロー", 100,  10);
-Battle magician = new MagicianCharacter("マジシャン", 50, 100, 3);
-```
-
-
-このように、オブジェクト指向プログラミングでは、親クラスやインターフェースの名前でインスタンスを作ることが可能です。
-
-今までのプログラムでは、下のように書きました。
-
-
-```java
-HeroCharacter hero = new HeroCharacter("ヒーロー", 100,  10);
-MagicianCharacter magician = new MagicianCharacter("マジシャン", 50, 100, 3);
-```
-
-
-前者と後者の違いは、なんでしょうか？
-
-
-前者の「hero」「magician」はBattleインターフェースに定義された機能のみをつかうことができます。
-
-後者の「hero」「magician」は、それぞれHeroCharacterクラスとMagicianCharacterクラスの機能を扱うことができます。
-
-
-一般的に見たら、後者のほうが多機能であるので、後者を利用したほうが良い気がします。
-
-しかし、Mainクラスからしたら、HeroCharacterクラスがBattleの機能を持っているかどうかわからないので、
-
-attackメソッドやuseItemメソッドを使えるかどうかわかりません。
-
-
-
-一方で、前者は、Battleのインターフェースの型で宣言することで、MainクラスでattackメソッドやuseItemメソッドが使える保証ができます。
-
-（※仮にHeroCharacterがBattleインターフェースを実装していなかったら、コンパイルエラーになる。）
-
-
-
-このあたりの便利さは、開発の規模が大きければ大きくなるほどとても重要になっていきます。
-
-
-例えば、農民クラス、王様クラスなど、様々なクラスができたときに、どのクラスがBattleできるかどうかソースコードを毎回確認するのは大変です。
-
-
-ですが、Battle型でインスタンスを作成できるということは、Battleの機能を持っていることが保証されているので、戦うことができます。
-
-
-詳しくは、応用編で学びますが、このような書き方ができることも覚えておきましょう。
-
-
-
 #### ワーク8　インターフェースと抽象クラスを使って、敵を作ろう
 
 それでは、敵を作って、戦わせましょう。
@@ -2417,11 +2358,11 @@ public class Main {
 	public static void main(String[] args) {
 
 		//キャラクターを作りました。
-	    Battle hero = new HeroCharacter("ヒーロー", 100,  10);
-	    Battle magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+	    HeroCharacter hero = new HeroCharacter("ヒーロー", 100,  10);
+	    MagicianCharacter magician = new MagicianCharacter("マジシャン", 50, 100, 3);
 	    
 	    //敵を作りました。
-	    Battle s = new Slime("スライム1", 10,  1);
+	    Slime s = new Slime("スライム1", 10,  1);
 
 	    //バトル開始
 	    System.out.println("##########バトル開始！##########");
@@ -2601,6 +2542,153 @@ public class Slime extends BasicEnemy {
 
 
 </div>
+
+
+
+#### インターフェースや抽象クラスの利用価値（ポリモーフィズム）
+
+最後に、ヒーローとマジシャンとスライム1の戦いを管理できるように、下記のように、BattleMangerクラスを作成してみます。
+※BattleMangerクラスは、今まで書いたMainクラスの戦う処理をそのまま移行したものです。
+
+
+＜BattleManager＞
+
+```java
+public class BattleManager {
+
+	private HeroCharacter c1;
+	private MagicianCharacter c2;
+	private Slime e1;
+	
+	BattleManager(HeroCharacter character1,MagicianCharacter character2, Slime enemy1){
+		this.c1 = character1;
+		this.c2 = character2;
+		this.e1 = enemy1;
+	}
+	
+	public void doBattle() {
+		
+	    //攻撃
+	    c1.attack();
+	    c2.attack();
+
+	    //敵の攻撃
+	    e1.attack();
+	    
+	    //アイテム
+	    c1.useItem("やくそう");
+	    c2.useItem("どくけしそう");
+
+	}
+		
+}
+```
+
+Mainクラスも下記のように書き換えます。
+
+＜Main＞
+
+```java
+public class Main {
+
+	public static void main(String[] args) {
+
+		//キャラクターを作りました。
+	    HeroCharacter hero = new HeroCharacter("ヒーロー", 100,  10);
+	    MagicianCharacter magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+	    
+	    //敵を作りました。
+	    Slime s = new Slime("スライム1", 10,  1);
+	    
+	    // キャラクターを設定
+	    BattleManager bm = new BattleManager(hero, magician, s);
+	    
+	    // 戦う
+	    bm.doBattle();
+	    	    
+	}
+
+}
+```
+
+このように書くことで、Mainクラスが見やすくなりました。
+
+しかし、このクラスのままでは、BattleMangerクラスには、コンストラクタで、HeroCharacter,ManagicianCharacter,Slimeの型しか受け付けていないので、このキャラクター達しか戦うことができません。
+
+もし、ほかのキャラクターを戦わせる場合、BattleManagerクラスのコンストラクタを作るのは大変です。
+
+そもそも【BattleManagerクラスから見たら、Battleの機能を実装しているクラス】であればよいわけです。
+
+その場合、下記のようにBattleMangerクラスを変更することで、Battleの機能を実装したクラスという抽象的なオブジェクトを扱うことができます。
+
+
+
+```java
+package com.object.basic;
+
+public class BattleManager {
+
+	private Battle c1;
+	private Battle c2;
+	private Battle e1;
+	
+	BattleManager(Battle character1,Battle character2, Battle enemy1){
+		this.c1 = character1;
+		this.c2 = character2;
+		this.e1 = enemy1;
+	}
+	
+	public void doBattle() {
+		
+	    //攻撃
+	    c1.attack();
+	    c2.attack();
+
+	    //敵の攻撃
+	    e1.attack();
+	    
+	    //アイテム
+	    c1.useItem("やくそう");
+	    c2.useItem("どくけしそう");
+
+	}
+	
+}
+```
+
+このようにすることで、コンストラクタでBattleを実装しているクラスを受け付けるという意図を持たせることができるのです。
+
+
+もっと言えば、今までは、変数の型とインスタンスの型が同じように記載していました。
+
+```java
+HeroCharacter hero = new HeroCharacter("ヒーロー", 100,  10);
+MagicianCharacter magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+Slime s = new Slime("スライム1", 10,  1);
+```
+
+しかし、Battleのインターフェースを実装していて、Battleの機能しか使わない場合などは、
+下記のように、変数の方は、Battleでインスタンスはそれぞれの具体的な型でつくることができます。
+
+```java
+Battle hero = new HeroCharacter("ヒーロー", 100,  10);
+Battle magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+Battle s = new Slime("スライム1", 10,  1);
+```
+
+この場合、後者はの「hero」「magician」「s」は、Battleの機能のみしか使えないことに注意してください。
+
+例えば、「hero.getName()」のように、getNameメソッドを呼び出せないデメリットもあります。
+
+※その場合は、(HeroCharacter)hero.getName()のように記載をすることで、抽象的な型から具体的な型に変換することができます。
+
+
+このあたりの便利さは、開発の規模が大きければ大きくなるほどとても重要になっていきます。
+
+
+この辺りは、オブジェクト指向の応用編で詳しく扱います。
+
+
 
 
 以上で、基本的なオブジェクト指向の講座は、終了です。

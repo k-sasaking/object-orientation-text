@@ -1812,6 +1812,38 @@ public class Main {
 }
 ```
 
+<input id="btn_h7" type="button" onclick="getHint(h7)" value="ヒント" />
+
+<div id="span_h7" style=";padding:5px;display:none;">
+ヒント<br/>
+＜MagicianCharacter＞
+<pre style="background-color: #364549;color:#ffffff;">
+
+public class MagicianCharacter extends BasicCharacter {
+
+	/*コンストラクタ*/
+    public MagicianCharacter(String xxx, int hp, int mp, int point){
+        super(xxx,hp,point);
+        /*ここに処理を追加*/
+    }
+
+    /*フィールド*/
+    // ここにmpを追加
+    /*メソッド*/
+    //攻撃する
+    @Override
+    public void attack(){
+    	// ここに杖で攻撃をする表示処理を追加
+    }
+    //魔法を使う
+    // attackメソッドと同様にここに作成してみましょう。
+
+}
+</pre>
+
+</div>
+
+
 
 <input id="btn_7" type="button" onclick="getCorrect(7)" value="正解を表示" />
 
@@ -2254,8 +2286,8 @@ public class Main {
 	public static void main(String[] args) {
 
 		//キャラクターを作りました。
-	    HeroCharacter hero = new HeroCharacter("ヒーロー", 100,  10);
-	    MagicianCharacter magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+	    Battle hero = new HeroCharacter("ヒーロー", 100,  10);
+	    Battle magician = new MagicianCharacter("マジシャン", 50, 100, 3);
 	    
 	    //バトル開始
 	    System.out.println("##########バトル開始！##########");
@@ -2309,6 +2341,64 @@ public class Main {
 
 
 
+#### インターフェースや抽象クラスの利用価値（ポリモーフィズム）
+
+
+インターフェースや抽象クラスのもっとも利用価値のある部分は、下のコードです。
+
+
+```java
+Battle hero = new HeroCharacter("ヒーロー", 100,  10);
+Battle magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+```
+
+
+このように、オブジェクト指向プログラミングでは、親クラスやインターフェースの名前でインスタンスを作ることが可能です。
+
+今までのプログラムでは、下のように書きました。
+
+
+```java
+HeroCharacter hero = new HeroCharacter("ヒーロー", 100,  10);
+MagicianCharacter magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+```
+
+
+前者と後者の違いは、なんでしょうか？
+
+
+前者の「hero」「magician」はBattleインターフェースに定義された機能のみをつかうことができます。
+
+後者の「hero」「magician」は、それぞれHeroCharacterクラスとMagicianCharacterクラスの機能を扱うことができます。
+
+
+一般的に見たら、後者のほうが多機能であるので、後者を利用したほうが良い気がします。
+
+しかし、Mainクラスからしたら、HeroCharacterクラスがBattleの機能を持っているかどうかわからないので、
+
+attackメソッドやuseItemメソッドを使えるかどうかわかりません。
+
+
+
+一方で、前者は、Battleのインターフェースの型で宣言することで、MainクラスでattackメソッドやuseItemメソッドが使える保証ができます。
+
+（※仮にHeroCharacterがBattleインターフェースを実装していなかったら、コンパイルエラーになる。）
+
+
+
+このあたりの便利さは、開発の規模が大きければ大きくなるほどとても重要になっていきます。
+
+
+例えば、農民クラス、王様クラスなど、様々なクラスができたときに、どのクラスがBattleできるかどうかソースコードを毎回確認するのは大変です。
+
+
+ですが、Battle型でインスタンスを作成できるということは、Battleの機能を持っていることが保証されているので、戦うことができます。
+
+
+詳しくは、応用編で学びますが、このような書き方ができることも覚えておきましょう。
+
+
+
 #### ワーク8　インターフェースと抽象クラスを使って、敵を作ろう
 
 それでは、敵を作って、戦わせましょう。
@@ -2327,11 +2417,11 @@ public class Main {
 	public static void main(String[] args) {
 
 		//キャラクターを作りました。
-	    HeroCharacter hero = new HeroCharacter("ヒーロー", 100,  10);
-	    MagicianCharacter magician = new MagicianCharacter("マジシャン", 50, 100, 3);
+	    Battle hero = new HeroCharacter("ヒーロー", 100,  10);
+	    Battle magician = new MagicianCharacter("マジシャン", 50, 100, 3);
 	    
 	    //敵を作りました。
-	    Slime s = new Slime("スライム1", 10,  1);
+	    Battle s = new Slime("スライム1", 10,  1);
 
 	    //バトル開始
 	    System.out.println("##########バトル開始！##########");
@@ -2525,6 +2615,16 @@ public class Slime extends BasicEnemy {
 いずれにせよ、オブジェクト指向って意外と単純なものなんだなと知ってもらえたら、なによりです。
 
 
+### じゃんけんゲーム
+
+オブジェクト指向を学びましたが、とはいえ、実践レベルでちゃんと扱えるようになるには、コーディングになれる必要はあると思います。
+
+実際に、もっとオブジェクト指向を深めたい人は、じゃんけんゲームを作ってみるといいと思います。
+
+下記にプログラムのサンプルコードがあるので、参考にして作ってみたり、自分で作成してみたものと、比べてやってみるとより実力がつくと思います。
+
+https://github.com/k-sasaking/janken-java
+
 
 
 
@@ -2567,6 +2667,9 @@ function moreQuestion(id){
 }
 function getNone(id){
     changeText(id,'表示',"#334433");
+}
+function getHint(id){
+    changeText(id,'ヒント',"#334433");
 }
 function getReference(id){
     changeText(id,'参考','#228822');
